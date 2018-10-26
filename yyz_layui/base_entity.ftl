@@ -70,7 +70,6 @@ public abstract class Base${name}<M extends Base${name}<M>> extends Model<M> imp
     public M set${f.name?cap_first}(${f.type.simpleName} ${f.name}) {
         set("${f.columnName}", ${f.name});
         return (M) this;
-        ${f.inputTemplateRender!''}
     }
     </#list>
 

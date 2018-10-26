@@ -15,7 +15,7 @@
         <form class="layui-form" action="" onsubmit="return false">
             <input type="hidden" name="id" value="${(o.id)!''}" />
             <#list fields as f>
-            <#if f.inputTemplateRender??>
+            <#if f.inputTemplateRender?? && f.inputTemplateRender!="">
             ${f.inputTemplateRender}
             <#else>
             <div class="layui-form-item">
@@ -26,7 +26,7 @@
             </div>
             </#if>
             </#list>
-            <div class="layui-form-item layui-layout-admin">
+            <div class="layui-form-item layui-layout-admin">    
                 <div class="layui-input-block">
                     <div class="layui-footer" style="left: 0;">
                         <button class="layui-btn" lay-submit="" lay-filter="web-submit">保  存</button>
@@ -58,6 +58,11 @@
             return false;
         })
 
+        <#list fields as f>
+            <#if (f.inputTemplateRenders?size > 1)>
+                ${f.inputTemplateRenders[1]}
+            </#if>
+        </#list>
     })
 </script>
 </body>
