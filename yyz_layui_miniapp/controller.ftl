@@ -1,9 +1,9 @@
-package com.yun.yun_gov.busi.controller;
+package com.yun.miniapp.busi.controller;
 
 import com.google.common.collect.Lists;
 import com.jfinal.kit.Kv;
 import com.jfinal.plugin.activerecord.Page;
-import com.yun.yun_gov.common.base.BaseController;
+import com.yun.miniapp.common.base.BaseController;
 import org.apache.commons.lang3.StringUtils;
 
 import java.util.Date;
