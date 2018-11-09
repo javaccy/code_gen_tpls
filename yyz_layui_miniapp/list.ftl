@@ -65,12 +65,7 @@
 
         //列表操作
         table.on('tool(newsList)', function(obj){
-            var layEvent = obj.event;
-            if(layEvent === 'edit'){
-                edit(obj.data);
-            }else if (layEvent === 'del') {
-                del(obj.data)
-            }
+            eval(obj.event+"(obj.data)");
         });
 
 
@@ -110,10 +105,6 @@
                 success : function(layero, index){
                 }
             });
-            //改变窗口大小时，重置弹窗的宽高，防止超出可视区域（如F12调出debug的操作）
-            /* $(window).on("resize",function(){
-                 layui.layer.full(index);
-             })*/
         });
 
         function del(edit){
