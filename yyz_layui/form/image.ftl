@@ -3,7 +3,7 @@
     <div class="layui-upload">
         <div class="layui-upload-list">
             <img class="layui-upload-img" src="${(o.image)!''}" height="150px" width="150px">
-            <input type="hidden" name="image" value="${r"${(o."+columnName+")!''}"}">
+            <input type="hidden" name="${columnName}" value="${r"${(o."+columnName+")!''}"}">
             <button type="button" class="layui-btn layui-btn-sm" id="${name}UploadImageBtn">上传图片</button>
             <input class="layui-upload-file" type="file" name="file" multiple="">
         </div>

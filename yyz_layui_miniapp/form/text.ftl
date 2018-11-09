@@ -1,7 +1,7 @@
 <div class="layui-form-item">
     <label class="layui-form-label">${title!''}</label>
     <div class="layui-input-block">
-        <textarea id="tinymce_${columnName}" placeholder="${title!''}" class="layui-input qy-abstract" style='width:30%'>${r"${(o."+columnName+")!''}"}</textarea>
+        <textarea name="${columnName}" id="tinymce_${columnName}" placeholder="${title!''}" class="layui-input qy-abstract" style='width:30%'>${r"${(o."+columnName+")!''}"}</textarea>
     </div>
 </div>
 

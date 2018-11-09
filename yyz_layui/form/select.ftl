@@ -1,7 +1,7 @@
 <div class="layui-form-item">
     <label class="layui-form-label">${title!'XXXXXXXX'}</label>
     <div class="layui-input-block">
-        <select name="status" value="${r"${(o."+columnName+")!''}"}" lay-verify="required">
+        <select name="${columnName}" value="${r"${(o."+columnName+")!''}"}" lay-verify="required">
             ${r"<#list resolvers.entrySet() as s>"}
             ${r"<#if o?? && s.key == o.status>"}
             <option value="${r"${s.key}"}" selected>${r"${s.value}"}</option>
