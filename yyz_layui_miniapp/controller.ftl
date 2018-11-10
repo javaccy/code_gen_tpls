@@ -25,7 +25,7 @@ public class ${name}Controller extends BaseController {
      * 跳转到列表页面
      */
     public void page(){
-        render("${tableName}_list.html");
+        render("${tableName}_list.ftl");
     }
 
     /**
@@ -65,7 +65,7 @@ public class ${name}Controller extends BaseController {
             String id = requirePara("id");
             ${name} ${tableAlias} = ${name}.dao.findById(id);
             setAttr("o", ${tableAlias});
-            render("${tableName}_edit.html");
+            render("${tableName}_edit.ftl");
         } else {
             ${name} ${tableAlias} = getModel(${name}.class, "", true);
             ${tableAlias}.update();
