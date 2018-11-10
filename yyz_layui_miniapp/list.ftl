@@ -34,7 +34,7 @@
 </script>
 <script type="text/javascript">
     layui.config({
-        base:'../../js/modules/'
+        base:'${r"${basePath}"}/js/modules/'
     });
     layui.use(['jquery','form','layer','laydate','table','laytpl','tools'],function($,form,layer,laydate,table,laytpl,tools){
         var tableIns = table.render({
