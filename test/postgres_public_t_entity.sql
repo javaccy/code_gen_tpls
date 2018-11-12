@@ -1,0 +1,1 @@
+INSERT INTO public.t_entity (id, entity_title, entity_name, package_name, id_type) VALUES ('A82C75432AEB4913A93514FB9E97C6D4', '文章', 'Article', 'gen', 'CHAR');
