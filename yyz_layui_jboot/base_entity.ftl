@@ -2,6 +2,12 @@ package io.jboot.admin.service.entity.model.base;
 
 import io.jboot.db.model.JbootModel;
 import com.jfinal.plugin.activerecord.IBean;
+
+import java.util.Date;
+/**
+ * ${tableComment}
+ * @param <M>
+ */
 @SuppressWarnings({"serial", "unchecked"})
 public abstract class Base${name}<M extends Base${name}<M>> extends JbootModel<M> implements IBean {
 
