@@ -6,7 +6,6 @@ import com.jfinal.plugin.activerecord.IBean;
 import java.util.Date;
 /**
  * ${tableComment}
- * @param <M>
  */
 @SuppressWarnings({"serial", "unchecked"})
 public abstract class Base${name}<M extends Base${name}<M>> extends JbootModel<M> implements IBean {

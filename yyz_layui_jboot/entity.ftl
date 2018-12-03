@@ -2,7 +2,6 @@ import io.jboot.db.annotation.Table;
 
 /**
  * ${tableComment}
- * @param <M>
  */
 @Table(datasource = "${schemaName}",tableName = "${tableName}", primaryKey = "${idName}")
 public class ${name} extends Base${name}<${name}> {
