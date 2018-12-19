@@ -7,6 +7,8 @@ import io.jboot.service.JbootServiceBase;
 
 import javax.inject.Singleton;
 
-public class ${name}ServiceImpl extends JbootServiceBase<${name}> implements ${name}Service {
+@Bean
+@Singleton
+public class ${name}ServiceImpl implements ${name}Service {
 
 }

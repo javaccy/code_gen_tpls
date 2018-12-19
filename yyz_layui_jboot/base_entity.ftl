@@ -1,4 +1,4 @@
-package io.jboot.admin.service.entity.model.base;
+package com.yyz.company.service.entity.valid.base;
 
 import io.jboot.db.model.JbootModel;
 import com.jfinal.plugin.activerecord.IBean;
