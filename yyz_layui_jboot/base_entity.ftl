@@ -45,7 +45,7 @@ public abstract class Base${name}<M extends Base${name}<M>> extends JbootModel<M
 
 
     <#list fields as f>
-    //${f.comment}${(functions.properties('linePointer')=='1')?string("//"+tableName+"."+f.columName,"")}
+    //${f.comment}${(functions.properties('linePointer')=='1')?string("//"+tableName+"."+f.columnName,"")}
     public ${f.type.simpleName} get${f.name?cap_first}() {
         <#if f.type.simpleName == "Integer">
         return getInt("${f.columnName}");
