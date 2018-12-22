@@ -1,19 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8">
-    <title>${tableComment!"XXXXXXXXXXX"}</title>
-    <meta name="renderer" content="webkit">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="format-detection" content="telephone=no">
-    <link rel="stylesheet" href="${r"${basePath}"}/layui/css/layui.css" media="all" />
-    <link rel="stylesheet" href="${r"${basePath}"}/css/admin.css" media="all" />
-</head>
-<body>
-<div class="layui-fluid">
+@ layout("/template/common/layout.html",{title:'${tableComment}添加',css:'/static/login/css/style'}){
     <div class="layui-card">
         <div class="layui-card-body">
             <div style="padding-bottom: 10px;">
@@ -28,14 +13,10 @@
         </div>
     </div>
 </div>
-<script type="text/javascript" src="${r"${basePath}"}/layui/layui.js"></script>
 <script type="text/html" id="tableImageTpl">
     <img src="{{d.avatar_url}}"/>
 </script>
 <script type="text/javascript">
-    layui.config({
-        base:'${r"${basePath}"}/js/modules/'
-    });
     layui.use(['jquery','form','layer','laydate','table','laytpl','tools'],function($,form,layer,laydate,table,laytpl,tools){
         var tableIns = table.render({
             elem: '#newsList',
@@ -124,6 +105,4 @@
         height:100px;
     }
 </style>
-</body>
-
-</html>
+@}

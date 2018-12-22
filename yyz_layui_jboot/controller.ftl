@@ -1,9 +1,10 @@
-package com.yun.miniapp.busi.controller;
+package com.yyz.store.controller;
 
 import com.google.common.collect.Lists;
 import com.jfinal.kit.Kv;
 import com.jfinal.plugin.activerecord.Page;
-import com.yun.miniapp.common.base.BaseController;
+import com.yyz.commons.web.base.BaseController;
+import io.jboot.web.controller.annotation.RequestMapping;
 import org.apache.commons.lang3.StringUtils;
 
 import java.util.Date;
@@ -12,6 +13,7 @@ import java.util.List;
 /**
  * ${tableComment}
  */
+@RequestMapping(value = "${tableName?replace('_','/')}")
 public class ${name}Controller extends BaseController {
 
     private void resolvers(){
@@ -25,7 +27,7 @@ public class ${name}Controller extends BaseController {
      * 跳转到列表页面
      */
     public void page(){
-        render("${tableName}_list.ftl");
+        render("${tableName}_list.html");
     }
 
     /**
@@ -65,7 +67,7 @@ public class ${name}Controller extends BaseController {
             String id = requirePara("id");
             ${name} ${tableAlias} = ${name}.dao.findById(id);
             setAttr("o", ${tableAlias});
-            render("${tableName}_edit.ftl");
+            render("${tableName}_edit.html");
         } else {
             ${name} ${tableAlias} = getModel(${name}.class, "", true);
             ${tableAlias}.update();
