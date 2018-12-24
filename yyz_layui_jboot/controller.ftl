@@ -70,14 +70,17 @@ public class ${name}Controller extends BaseController {
      */
     public void edit() {
         SysUser user = AuthUtils.getLoginUser();
+        String id = requirePara("id");
+        ${name} old = ${name?uncap_first}.findById(id, user);
         if ("get".equalsIgnoreCase(getRequest().getMethod())) {
             String id = requirePara("id");
             ${name} ${tableAlias} = ${name?uncap_first}Service.findById(id);
-            setAttr("o", ${tableAlias});
+            setAttr("o",old);
             render("${tableName}_edit.html");
         } else {
             ${name} ${tableAlias} = getModel(${name}.class, "", true);
-            ${tableAlias}.update();
+            old.setOpTime(${tableAlias}.getOpTime());
+            old.update();
             renderSuccess();
         }
     }
