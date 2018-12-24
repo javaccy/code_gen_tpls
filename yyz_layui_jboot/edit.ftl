@@ -1,7 +1,6 @@
 @ layout("/template/common/layout.html",{title:'${tableComment}编辑',css:'/static/login/css/style'}){
 <div class="layui-card">
-    <div class="layui-card-body" style="padding: 15px;">
-        <form class="layui-form" action="" onsubmit="return false">
+    <div class="layui-form layui-card-body" style="padding: 15px;">
             <input type="hidden" name="id" value="${r"${o."+idName+"!''}"}" />
             <#list fields as f>
             <#if f.inputTemplateRender?? && f.inputTemplateRender!="">
@@ -39,11 +38,10 @@
             <div class="layui-form-item layui-layout-admin">    
                 <div class="layui-input-block">
                     <div class="layui-footer" style="left: 0;">
-                        <button class="layui-btn" lay-submit="" lay-filter="web-submit">保  存</button>
+                        <button class="layui-btn" lay-submit lay-filter="web-submit">保  存</button>
                     </div>
                 </div>
             </div>
-        </form>
     </div>
 </div>
 <script>
