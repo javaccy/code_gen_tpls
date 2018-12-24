@@ -59,7 +59,7 @@
                     layui.tools.tip(d,"${tableComment}修改成功！","${tableComment}修改失败！")
                 })
             } else {
-                layui.tools.post("edit",data.field,function(d){
+                layui.tools.post("add",data.field,function(d){
                     layui.tools.tip(d,"${tableComment}添加成功！","${tableComment}添加失败！")
                 });
             }
