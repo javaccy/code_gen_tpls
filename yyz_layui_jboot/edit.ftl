@@ -7,12 +7,33 @@
             <#if f.inputTemplateRender?? && f.inputTemplateRender!="">
             ${f.inputTemplateRender}
             <#else>
+                <#if f.columnName?contains('img')>
+            <div class="layui-form-item">
+                <label class="layui-form-label">${f.title!''}</label>
+                <div class="layui-upload">
+                    <div class="layui-upload-list">
+                        <img class="layui-upload-img" src=${r"${o."+f.columnName+"!''}"}" height="150px" width="150px">
+                        <input type="hidden" name="${f.columnName}" value="${r"${(o."+f.columnName+")!''}"}">
+                        <button type="button" class="layui-btn layui-btn-sm .uploadBtn">上传图片</button>
+                        <input class="layui-upload-file" type="file" name="file" multiple="">
+                    </div>
+                </div>
+            </div>
+                <#elseif f.columnName?contains('time')>
+            <div class="layui-form-item">
+                <label class="layui-form-label">${f.title}</label>
+                <div class="layui-input-block">
+                    <input type="text" name="${f.columnName}" value="${r"${o."+f.columnName+"!''}"}" lay-verify="required" placeholder="${f.title!'XXX'}" class="layui-input datetime_input">
+                </div>
+            </div>
+                <#else>
             <div class="layui-form-item">
                 <label class="layui-form-label">${f.title!'XXXX'}</label>
                 <div class="layui-input-block">
                     <input type="text" name="${f.columnName}" value="${r"${o."+f.columnName+"!''}"}" lay-verify="required" placeholder="${f.title!'XXX'}" class="layui-input">
                 </div>
             </div>
+                </#if>
             </#if>
             </#list>
             <div class="layui-form-item layui-layout-admin">    
@@ -36,12 +57,19 @@
         });
         form.on("submit(web-submit)",function(data){
             if (data.field.id) {
-                layui.tools.postTable("./edit",data.field,"${tableComment}修改成功！")
+                layui.tools.post("edit",data.field,function(d){
+                    layui.tools.tip(d,"${tableComment}修改成功！","${tableComment}修改失败！")
+                })
             } else {
-                layui.tools.postTable("./add",data.field,"${tableComment}添加成功！")
+                layui.tools.post("edit",data.field,function(d){
+                    layui.tools.tip(d,"${tableComment}添加成功！","${tableComment}添加失败！")
+                });
             }
             return false;
-        })
+        });
+
+        tools.initUpload();
+        tools.initDateTime();
 
         <#list fields as f>
             <#if (f.inputTemplateRenders?size > 1)>
