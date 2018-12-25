@@ -4,7 +4,7 @@
             <div class="layui-form" style="padding-bottom: 10px;">
                     <input type="text" class="layui-input layui-input-inline layui-input-search" style="width: 200px" name="param" placeholder="名字">
                     <button class="layui-btn" type="submit" lay-submit lay-filter="search-submit">查询</button>
-                    <button class="layui-btn layuiadmin-btn-useradmin" id="add">添加</button>
+                    <button class="layui-btn layuiadmin-btn-useradmin" id="add" data-type="add">添加</button>
             </div>
             <table id="newsList" lay-filter="newsList"></table>
             <script type="text/html" id="newsListBar"> </script>
@@ -60,14 +60,15 @@
 
 
         function edit(edit){
-            var index = layui.layer.open({
+            tools.openFrameForm('edit?id='+edit.id,"编辑${tableComment!"XXXXXXXXXXX"}",{tableInstance:tableIns,area:['50%','50%']})
+            /*var index = layui.layer.open({
                 title : "${tableComment!"XXXXXXXXXXX"}编辑",
                 type : 2,
                 content : "edit?id="+edit.id,
                 area: ['800px', '600px'],
                 success : function(layero, index){
                 }
-            })
+            })*/
             //改变窗口大小时，重置弹窗的宽高，防止超出可视区域（如F12调出debug的操作）
             /*$(window).on("resize",function(){
                 layui.layer.full(index);
@@ -76,14 +77,15 @@
 
 
         $("#add").on("click",function(){
-            var index = layui.layer.open({
+            tools.openFrameForm('add',"添加${tableComment!"XXXXXXXXXXX"}",{tableInstance:tableIns,area:['50%','50%']})
+            /*var index = layui.layer.open({
                 title : "${tableComment!"XXXXXXXXXXX"}添加",
                 type : 2,
                 content : "add",
                 area: ['800px', '600px'],
                 success : function(layero, index){
                 }
-            });
+            });*/
         });
 
         function del(edit){
