@@ -79,7 +79,9 @@ public class ${name}Controller extends BaseController {
             render("${tableName}_edit.html");
         } else {
             ${name} ${tableAlias} = getModel(${name}.class, "", true);
-            old.setCreateTime(new Date());
+            <#list fields as f>
+            old.set${f.name?cap_first}(${tableAlias}.get${f.name?cap_first});
+            </#list>
             old.update();
             renderSuccess();
         }
