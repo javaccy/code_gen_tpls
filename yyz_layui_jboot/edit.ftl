@@ -38,7 +38,7 @@
             <div class="layui-form-item layui-layout-admin">    
                 <div class="layui-input-block">
                     <div class="layui-footer" style="left: 0;">
-                        <button class="layui-btn layui-hide" lay-submit lay-filter="web-submit">保  存</button>
+                        <button class="layui-btn layui-hide" lay-submit lay-filter="web-form">保  存</button>
                     </div>
                 </div>
             </div>
@@ -56,7 +56,7 @@
 
         if (top === window) {
             $('[lay-filter=web-submit]').removeClass('layui-hide');
-            form.on("submit(web-submit)",function(data){
+            form.on("submit(web-form)",function(data){
                 if (data.field.id) {
                     layui.tools.post("edit",data.field,function(d){
                         layui.tools.tip(d,"${tableComment}修改成功！","${tableComment}修改失败！")
