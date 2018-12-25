@@ -55,7 +55,7 @@
         });
 
         if (top === window) {
-            $('[lay-filter=web-submit]').removeClass('layui-hide');
+            $('[lay-filter=web-form]').removeClass('layui-hide');
             form.on("submit(web-form)",function(data){
                 if (data.field.id) {
                     layui.tools.post("edit",data.field,function(d){
