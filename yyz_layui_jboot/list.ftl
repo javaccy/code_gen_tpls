@@ -49,13 +49,7 @@
 
 
         form.on("submit(search-submit)",function(edit){
-            var params = [];
-            layui.jquery.each(edit.form.elements,function(i,n){
-                if(n.value && n.name){
-                    params.push(n.name+"="+n.value);
-                }
-            });
-            tableIns.reload({url:"pageJson?"+params.join("&")});
+            tableIns.reload({where:edit.field});
         });
 
 
