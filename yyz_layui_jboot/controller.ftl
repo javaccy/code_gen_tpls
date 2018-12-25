@@ -75,7 +75,6 @@ public class ${name}Controller extends BaseController {
         String id = requirePara("id");
         ${name} old = ${name?uncap_first}Service.findById(id, user);
         if ("get".equalsIgnoreCase(getRequest().getMethod())) {
-            ${name} ${tableAlias} = ${name?uncap_first}Service.findById(id);
             setAttr("o",old);
             render("${tableName}_edit.html");
         } else {

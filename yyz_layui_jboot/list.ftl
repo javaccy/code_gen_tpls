@@ -83,12 +83,7 @@
         });
 
         function del(edit){
-            layer.confirm('确定删除此${tableComment!"XXXXXXXXXXX"}？',{icon:3, title:'提示信息'},function(index){
-                tools.post("del?id="+edit.id,{},function(){
-                    tableIns.reload()
-                });
-                layer.close(index);
-            });
+            tools.del("del",{id:edit.id},tableIns);
         }
         $("#add").trigger("click")
 
