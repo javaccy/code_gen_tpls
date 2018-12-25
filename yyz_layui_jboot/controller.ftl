@@ -80,7 +80,7 @@ public class ${name}Controller extends BaseController {
             render("${tableName}_edit.html");
         } else {
             ${name} ${tableAlias} = getModel(${name}.class, "", true);
-            old.setCreate(new Date());
+            old.setCreateTime(new Date());
             old.update();
             renderSuccess();
         }
