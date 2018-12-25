@@ -1,3 +1,5 @@
+package com.yyz.company.service.entity.valid;
+import com.yyz.company.service.entity.valid.base.Base${name};
 import io.jboot.db.annotation.Table;
 
 /**

@@ -5,6 +5,8 @@ import com.jfinal.kit.Kv;
 import com.jfinal.plugin.activerecord.Page;
 import com.jfinal.plugin.activerecord.Record;
 import com.yyz.commons.web.base.BaseController;
+import com.yyz.company.service.entity.sys.SysUser;
+import com.yyz.store.support.auth.AuthUtils;
 import io.jboot.web.controller.annotation.RequestMapping;
 import com.yyz.company.service.api.${name}Service;
 import com.yyz.company.service.entity.valid.${name};
@@ -44,8 +46,8 @@ public class ${name}Controller extends BaseController {
         String param = getPara("param");
         List<Object> params = Lists.newArrayList();
         String where =  "";
-        where = append(where, params, "qpw.user_name ", param, "like");
-        Page<Record> page = ${name?uncap_first}Service.findPage(getPager(), params, where);
+        where = append(where, params, "${tableAlias}.user_name ", param, "like");
+        Page<Record> page = ${name?uncap_first}Service.findPage(getPager(), params, where," ${tableAlias}.id desc ");
         renderPage(page);
     }
 
@@ -71,15 +73,14 @@ public class ${name}Controller extends BaseController {
     public void edit() {
         SysUser user = AuthUtils.getLoginUser();
         String id = requirePara("id");
-        ${name} old = ${name?uncap_first}.findById(id, user);
+        ${name} old = ${name?uncap_first}Service.findById(id, user);
         if ("get".equalsIgnoreCase(getRequest().getMethod())) {
-            String id = requirePara("id");
             ${name} ${tableAlias} = ${name?uncap_first}Service.findById(id);
             setAttr("o",old);
             render("${tableName}_edit.html");
         } else {
             ${name} ${tableAlias} = getModel(${name}.class, "", true);
-            old.setOpTime(${tableAlias}.getOpTime());
+            old.setCreate(new Date());
             old.update();
             renderSuccess();
         }
