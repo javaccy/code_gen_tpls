@@ -38,7 +38,7 @@
             <div class="layui-form-item layui-layout-admin">    
                 <div class="layui-input-block">
                     <div class="layui-footer" style="left: 0;">
-                        <button class="layui-btn" lay-submit lay-filter="web-submit">保  存</button>
+                        <button class="layui-btn layui-hide" lay-submit lay-filter="web-submit">保  存</button>
                     </div>
                 </div>
             </div>
@@ -53,18 +53,22 @@
                 }
             }
         });
-        form.on("submit(web-submit)",function(data){
-            if (data.field.id) {
-                layui.tools.post("edit",data.field,function(d){
-                    layui.tools.tip(d,"${tableComment}修改成功！","${tableComment}修改失败！")
-                })
-            } else {
-                layui.tools.post("add",data.field,function(d){
-                    layui.tools.tip(d,"${tableComment}添加成功！","${tableComment}添加失败！")
-                });
-            }
-            return false;
-        });
+
+        if (top === window) {
+            $('[lay-filter=web-submit]').removeClass('layui-hide');
+            form.on("submit(web-submit)",function(data){
+                if (data.field.id) {
+                    layui.tools.post("edit",data.field,function(d){
+                        layui.tools.tip(d,"${tableComment}修改成功！","${tableComment}修改失败！")
+                    })
+                } else {
+                    layui.tools.post("add",data.field,function(d){
+                        layui.tools.tip(d,"${tableComment}添加成功！","${tableComment}添加失败！")
+                    });
+                }
+                return false;
+            });
+        }
 
         tools.initUpload();
         tools.initDateTime();
