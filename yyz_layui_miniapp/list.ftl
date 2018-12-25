@@ -81,7 +81,7 @@
 
 
         function edit(edit){
-            tools.openFrameForm('edit',"编辑${tableComment!"XXXXXXXXXXX"}",{tableInstance:tableIns,area:['50%','50%']})
+            tools.openFrameForm('edit?id='+edit.id,"编辑${tableComment!"XXXXXXXXXXX"}",{tableInstance:tableIns,area:['50%','50%']})
             /*var index = layui.layer.open({
                 title : "${tableComment!"XXXXXXXXXXX"}编辑",
                 type : 2,
