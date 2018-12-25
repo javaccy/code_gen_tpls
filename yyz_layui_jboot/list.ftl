@@ -54,7 +54,7 @@
 
 
         function edit(edit){
-            tools.openFrameForm('edit?id='+edit.id,"编辑${tableComment!"XXXXXXXXXXX"}",{tableInstance:tableIns,area:['50%','50%']})
+            tools.openFrameForm('edit?id='+edit.id,"编辑${tableComment!"XXXXXXXXXXX"}",{tableInstance:tableIns,area:['50%','70%']})
             /*var index = layui.layer.open({
                 title : "${tableComment!"XXXXXXXXXXX"}编辑",
                 type : 2,
@@ -71,7 +71,7 @@
 
 
         $("#add").on("click",function(){
-            tools.openFrameForm('add',"添加${tableComment!"XXXXXXXXXXX"}",{tableInstance:tableIns,area:['50%','50%']})
+            tools.openFrameForm('add',"添加${tableComment!"XXXXXXXXXXX"}",{tableInstance:tableIns,area:['50%','70%']})
             /*var index = layui.layer.open({
                 title : "${tableComment!"XXXXXXXXXXX"}添加",
                 type : 2,
