@@ -11,29 +11,27 @@
 </head>
 <body>
 <div class="layui-card">
-    <div class="layui-card-body" style="padding: 15px;">
-        <form class="layui-form" action="" onsubmit="return false">
-            <input type="hidden" name="id" value="${r"${(o."+idName+")!''}"}" />
-            <#list fields as f>
-            <#if f.inputTemplateRender?? && f.inputTemplateRender!="">
-            ${f.inputTemplateRender}
-            <#else>
-            <div class="layui-form-item">
-                <label class="layui-form-label">${f.title!'XXXX'}</label>
-                <div class="layui-input-block">
-                    <input type="text" name="${f.columnName}" value="${r"${(o."+f.columnName+")!''}"}" lay-verify="required" placeholder="${f.title!'XXX'}" class="layui-input">
+    <div class="layui-card-body layui-form" style="padding: 15px;">
+        <input type="hidden" name="id" value="${r"${(o."+idName+")!''}"}" />
+        <#list fields as f>
+        <#if f.inputTemplateRender?? && f.inputTemplateRender!="">
+        ${f.inputTemplateRender}
+        <#else>
+        <div class="layui-form-item">
+            <label class="layui-form-label">${f.title!'XXXX'}</label>
+            <div class="layui-input-block">
+                <input type="text" name="${f.columnName}" value="${r"${(o."+f.columnName+")!''}"}" lay-verify="required" placeholder="${f.title!'XXX'}" class="layui-input">
+            </div>
+        </div>
+        </#if>
+        </#list>
+        <div class="layui-form-item layui-layout-admin">
+            <div class="layui-input-block">
+                <div class="layui-footer" style="left: 0;">
+                    <button class="layui-btn" lay-submit="" lay-filter="web-submit">保  存</button>
                 </div>
             </div>
-            </#if>
-            </#list>
-            <div class="layui-form-item layui-layout-admin">    
-                <div class="layui-input-block">
-                    <div class="layui-footer" style="left: 0;">
-                        <button class="layui-btn" lay-submit="" lay-filter="web-submit">保  存</button>
-                    </div>
-                </div>
-            </div>
-        </form>
+        </div>
     </div>
 </div>
 <script src="${r"${basePath}"}/layui/layui.js"></script>

@@ -80,7 +80,7 @@ public class ${name}Controller extends BaseController {
         } else {
             ${name} ${tableAlias} = getModel(${name}.class, "", true);
             <#list fields as f>
-            old.set${f.name?cap_first}(${tableAlias}.get${f.name?cap_first});
+            old.set${f.name?cap_first}(${tableAlias}.get${f.name?cap_first}());
             </#list>
             old.update();
             renderSuccess();
