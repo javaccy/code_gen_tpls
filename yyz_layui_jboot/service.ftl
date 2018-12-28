@@ -22,13 +22,16 @@ public interface ${name}Service extends BaseService<${name}>{
     Page<Record> findPage(Page<Record> pager, List<Object> params, String where, String orderBy);
 
 
-    /**
-    * todo 请删除
-    * 根据用户查询
-    * @param id
-    * @param user
-    * @return
-    */
-    ${name} findById(String id, SysUser user);
+   <#if functions.containsColumn("company_id")>
+       /**
+       * todo 请删除
+       * 根据用户查询
+       * @param id
+       * @param user
+       * @return
+       */
+       ${name} findById(String id, SysUser user);
+   </#if>
+
 
 }

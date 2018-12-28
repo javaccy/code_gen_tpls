@@ -73,7 +73,11 @@ public class ${name}Controller extends BaseController {
     public void edit() {
         SysUser user = AuthUtils.getLoginUser();
         String id = requirePara("id");
+        <#if functions.containsColumn("company_id")>
         ${name} old = ${name?uncap_first}Service.findById(id, user);
+        <#else>
+        ${name} old = ${name?uncap_first}Service.findById(id);
+        </#if>
         if ("get".equalsIgnoreCase(getRequest().getMethod())) {
             setAttr("o",old);
             render("${tableName}_edit.html");
@@ -93,7 +97,11 @@ public class ${name}Controller extends BaseController {
     public void del(){
         SysUser user = AuthUtils.getLoginUser();
         String id = requirePara("id");
+        <#if functions.containsColumn("company_id")>
+        ${name} ${tableAlias} = ${name}.dao.findById(id,user);
+        <#else>
         ${name} ${tableAlias} = ${name}.dao.findById(id);
+        </#if>
         ${tableAlias}.delete();
         renderSuccess();
     }

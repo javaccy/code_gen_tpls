@@ -21,11 +21,14 @@ public class ${name}ServiceImpl implements ${name}Service {
         return page;
     }
 
-    //todo 请删除
+
+    <#if functions.containsColumn("company_id")>
     @Override
     public ${name} findById(String id, SysUser user) {
         ${name} o = getDao().findById(id);
         checkUserModel(o, user);
         return o;
     }
+    </#if>
+
 }
