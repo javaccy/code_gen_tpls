@@ -24,7 +24,6 @@ public interface ${name}Service extends BaseService<${name}>{
 
    <#if functions.containsColumn("company_id")>
        /**
-       * todo 请删除
        * 根据用户查询
        * @param id
        * @param user

@@ -16,19 +16,19 @@
         <#if f.isString>
             public static Kv ${f.columnName}Kvs = Kv.create()
             <#list kvs as key>
-                <#if key_index == kvs?size>
-                    .set("${key}","${f.kvs["${key}"]}")
-                <#else>
+                <#if key_index+1 == kvs?size>
                     .set("${key}","${f.kvs["${key}"]}");
+                <#else>
+                    .set("${key}","${f.kvs["${key}"]}")
                 </#if>
             </#list>
         <#else>
             public static Kv ${f.columnName}Kvs = Kv.create()
             <#list kvs as key>
-                <#if key_index == kvs?size>
-                    .set(${key},"${f.kvs["${key}"]}")
-                <#else>
+                <#if key_index+1 == kvs?size>
                     .set(${key},"${f.kvs["${key}"]}");
+                <#else>
+                    .set(${key},"${f.kvs["${key}"]}")
                 </#if>
             </#list>
         </#if>
