@@ -34,3 +34,24 @@
         </#if>
     </#if>
 </#list>
+
+<#list fields as f>
+    <#assign kvs=f.kvs?keys/>
+    <#if f.kvs??&&(f.kvs?size>0)>
+        setAttr("${f.name}Kvs", ${name}.${f.name}Kvs);
+    </#if>
+</#list>
+
+
+<#list fields as f>
+    <#assign kvs=f.kvs?keys/>
+    <#if f.kvs??&&(f.kvs?size>0)>
+        <select name="${f.name}Kvs">
+            <option value ="${f.columnName}">全部</option>
+            ${r"<#list "}${f.name}Kvs${r" as s>"}
+                <option value ="${r"${s.key}"}" ${r"${(s.key == o."}${f.columnName}${r")?string('selected','')}"}>${r"${s.value}"}</option>
+            ${r"</#list>"}
+        </select>
+    </#if>
+</#list>
+
