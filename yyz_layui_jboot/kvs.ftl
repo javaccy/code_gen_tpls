@@ -17,18 +17,18 @@
             public static Kv ${f.name}Kvs = Kv.create()
             <#list kvs as key>
                 <#if key_index+1 == kvs?size>
-                    .set("${key}","${f.kvs["${key}"]}");
+                    .set(${f.columnName}_${key},"${f.kvs["${key}"]}");
                 <#else>
-                    .set("${key}","${f.kvs["${key}"]}")
+                    .set(${f.columnName}_${key},"${f.kvs["${key}"]}")
                 </#if>
             </#list>
         <#else>
             public static Kv ${f.name}Kvs = Kv.create()
             <#list kvs as key>
                 <#if key_index+1 == kvs?size>
-                    .set(${key},"${f.kvs["${key}"]}");
+                    .set(${f.columnName}_${key},"${f.kvs["${key}"]}");
                 <#else>
-                    .set(${key},"${f.kvs["${key}"]}")
+                    .set(${f.columnName}_${key},"${f.kvs["${key}"]}")
                 </#if>
             </#list>
         </#if>
@@ -42,16 +42,31 @@
     </#if>
 </#list>
 
-
-<#list fields as f>
-    <#assign kvs=f.kvs?keys/>
-    <#if f.kvs??&&(f.kvs?size>0)>
-        <select name="${f.name}Kvs">
-            <option value ="${f.columnName}">全部</option>
-            ${r"<#list "}${f.name}Kvs${r" as s>"}
+<#if functions.properties('template')=='beetl_yyz'>
+    <#list fields as f>
+        <#assign kvs=f.kvs?keys/>
+        <#if f.kvs??&&(f.kvs?size>0)>
+            <select name="${f.name}Kvs">
+                <option value ="${f.columnName}">全部</option>
+                ${r"@for(s in "}${f.name}Kvs${r" ){ "}
+                <option value ="${r"${s.key}"}" ${r"${s.key == o."}${f.columnName}${r" ? 'selected' : ''}"}>${r"${s.value}"}</option>
+                ${r"@}"}
+            </select>
+        </#if>
+    </#list>
+<#elseif functions.properties('template')=='freemarker'>
+    <#list fields as f>
+        <#assign kvs=f.kvs?keys/>
+        <#if f.kvs??&&(f.kvs?size>0)>
+            <select name="${f.name}Kvs">
+                <option value ="${f.columnName}">全部</option>
+                ${r"<#list "}${f.name}Kvs${r" as s>"}
                 <option value ="${r"${s.key}"}" ${r"${(s.key == o."}${f.columnName}${r")?string('selected','')}"}>${r"${s.value}"}</option>
-            ${r"</#list>"}
-        </select>
-    </#if>
-</#list>
+                ${r"</#list>"}
+            </select>
+        </#if>
+    </#list>
+</#if>
+
+
 

@@ -89,6 +89,52 @@
 
     })
 </script>
+
+//未激活
+public static Integer zhuangtai_0 = 0;
+//激活
+public static Integer zhuangtai_1 = 1;
+//失效
+public static Integer zhuangtai_2 = 2;
+//无
+public static String prize_type_0 = "0";
+//红包
+public static String prize_type_1 = "1";
+//彩票积分
+public static String prize_type_2 = "2";
+//未领取
+public static String prize_status_0 = "0";
+//已领取
+public static String prize_status_1 = "1";
+//已回收
+public static String prize_status_2 = "2";
+//未窜货，
+public static String is_flee_0 = "0";
+//窜货
+public static String is_flee_1 = "1";
+
+
+public static Kv zhuangtaiKvs = Kv.create()
+.set(zhuangtai_0,"未激活")
+.set(zhuangtai_1,"激活")
+.set(zhuangtai_2,"失效");
+public static Kv prizeTypeKvs = Kv.create()
+.set(prize_type_0,"无")
+.set(prize_type_1,"红包")
+.set(prize_type_2,"彩票积分");
+public static Kv prizeStatusKvs = Kv.create()
+.set(prize_status_0,"未领取")
+.set(prize_status_1,"已领取")
+.set(prize_status_2,"已回收");
+public static Kv isFleeKvs = Kv.create()
+.set(is_flee_0,"未窜货，")
+.set(is_flee_1,"窜货");
+
+setAttr("zhuangtaiKvs", Kami.zhuangtaiKvs);
+setAttr("prizeTypeKvs", Kami.prizeTypeKvs);
+setAttr("prizeStatusKvs", Kami.prizeStatusKvs);
+setAttr("isFleeKvs", Kami.isFleeKvs);
+
 <style type="text/css">
     tbody .laytable-cell-1-avatar_url{
         height:100px;
