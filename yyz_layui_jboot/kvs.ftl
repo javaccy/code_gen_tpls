@@ -2,9 +2,15 @@
     <#list f.kvs?keys as key>
         //${f.kvs["${key}"]}
         <#if f.isString>
-            public static ${f.type.simpleName} ${f.columnName}_${key} = "${key}";
+        public static ${f.type.simpleName} ${f.columnName}_${key} = "${key}";
+        <#elseif f.isNumber>
+            <#if key?starts_with("-")>
+                public static ${f.type.simpleName} ${f.columnName}_0${key?substring(1,2)} = ${key};
             <#else>
-            public static ${f.type.simpleName} ${f.columnName}_${key} = ${key};
+                public static ${f.type.simpleName} ${f.columnName}_${key} = ${key};
+            </#if>
+        <#else>
+        public static ${f.type.simpleName} ${f.columnName}_${key} = ${key};
         </#if>
     </#list>
 </#list>
@@ -20,6 +26,23 @@
                     .set(${f.columnName}_${key},"${f.kvs["${key}"]}");
                 <#else>
                     .set(${f.columnName}_${key},"${f.kvs["${key}"]}")
+                </#if>
+            </#list>
+        <#elseif f.isNumber>
+            public static Kv ${f.name}Kvs = Kv.create()
+            <#list kvs as key>
+                <#if key_index+1 == kvs?size>
+                    <#if key?starts_with('-')>
+                        .set(${f.columnName}_0${key?substring(1,2)},"${f.kvs["${key}"]}");
+                    <#else>
+                        .set(${f.columnName}${key},"${f.kvs["${key}"]}");
+                    </#if>
+                <#else>
+                    <#if key?starts_with('-')>
+                        .set(${f.columnName}_0${key?substring(1,2)},"${f.kvs["${key}"]}")
+                    <#else>
+                        .set(${f.columnName}${key},"${f.kvs["${key}"]}")
+                    </#if>
                 </#if>
             </#list>
         <#else>
