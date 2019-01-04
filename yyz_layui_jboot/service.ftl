@@ -23,13 +23,13 @@ public interface ${name}Service extends BaseService<${name}>{
 
 
    <#if functions.containsColumn("company_id")>
-       /**
-       * 根据用户查询
-       * @param id
-       * @param user
-       * @return
-       */
-       ${name} findById(String id, SysUser user);
+   /**
+   * 根据用户查询
+   * @param id
+   * @param user
+   * @return
+   */
+   ${name} findById(String id, SysUser user);
    </#if>
 
 
