@@ -41,7 +41,7 @@
                     <#if key?starts_with('-')>
                         .set(${f.columnName}_0${key?substring(1,2)},"${f.kvs["${key}"]}")
                     <#else>
-                        .set(${f.columnName}${key},"${f.kvs["${key}"]}")
+                        .set(${f.columnName}_${key},"${f.kvs["${key}"]}")
                     </#if>
                 </#if>
             </#list>
