@@ -23,7 +23,7 @@
             height : "full",
             limit : 20,
             limits : [10,15,20,25],
-            id : "newsListTable",
+            id : "newsList",
             cols : [[
                 {type:'numbers'},
                 <#list fields as f>
@@ -48,7 +48,7 @@
 
 
         form.on("submit(search-submit)",function(edit){
-            tableIns.reload({where:edit.field});
+            tableIns.reload({where:edit.field,page: {curr: 1}});
         });
 
 
