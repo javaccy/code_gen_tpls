@@ -1,14 +1,13 @@
 @ layout("/template/common/layout.html",{title:'${tableComment}添加',css:'/static/login/css/style'}){
-    <div class="layui-card">
-        <div class="layui-card-body">
-            <div class="layui-form" style="padding-bottom: 10px;">
-                    <input type="text" class="layui-input layui-input-inline layui-input-search" style="width: 200px" name="param" placeholder="名字">
-                    <button class="layui-btn" type="submit" lay-submit lay-filter="search-submit">查询</button>
-                    <button class="layui-btn layuiadmin-btn-useradmin" id="add" data-type="add">添加</button>
-            </div>
-            <table id="newsList" lay-filter="newsList"></table>
-            <script type="text/html" id="newsListBar"> </script>
+<div class="layui-card">
+    <div class="layui-card-body">
+        <div class="layui-form" style="padding-bottom: 10px;">
+                <input type="text" class="layui-input layui-input-inline layui-input-search" style="width: 200px" name="param" placeholder="名字">
+                <button class="layui-btn" type="submit" lay-submit lay-filter="search-submit">查询</button>
+                <button class="layui-btn layuiadmin-btn-useradmin" id="add" data-type="add">添加</button>
         </div>
+        <table id="newsList" lay-filter="newsList"></table>
+        <script type="text/html" id="newsListBar"> </script>
     </div>
 </div>
 <script type="text/html" id="tableImageTpl">
