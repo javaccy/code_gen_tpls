@@ -43,12 +43,38 @@ public class ${name}Controller extends BaseController {
      */
     public void pageJson(){
         SysUser user = AuthUtils.getLoginUser();
-        String param = getPara("param");
         List<Object> params = Lists.newArrayList();
         String where =  "";
-        where = append(where, params, "${tableAlias}.user_name ", param, "like");
+        where = append(where, params, "${tableAlias}.user_name ", getPara("param"), "like");
         Page<Record> page = ${name?uncap_first}Service.findPage(getPager(), params, where," ${tableAlias}.id desc ");
         renderPage(page);
+    }
+
+
+
+    public void pageExport(){
+        SysUser user = AuthUtils.getLoginUser();
+        List<Object> params = Lists.newArrayList();
+        String where =  " from ${tableAlias} where ture";
+        where = append(where, params, "${tableAlias}.user_name ",getPara("param"), "like");
+        Boolean excel = getParaToBoolean("excel", false);
+        String s = "select ${tableAlias}.* ";
+        JExcelExorter.DefaultDatasource ds = new JExcelExorter.DefaultDatasource(DB.useBusi(), getPageNumber(),getPageSize(), s, where, params.toArray()) {
+            @Override
+            public void format(Page<Record> page) {
+                replaceUrl(page.getList(), "image");
+            }
+        };
+        if (excel) {
+            String[] headers = {"${titles?join('","')}"};
+            String[] columns = {"${columns?join('","')}"};
+            XPoiRender render = XPoiRender.csv(ds, Charset.forName("utf-8")).fileName("${name}列表.csv").headers(headers).columns(columns);
+            render(render);
+        } else {
+            Page<Record> page = DB.useBusi().paginate(getPageNumber(), getPageSize(), s, where, params.toArray());
+            ds.format(page);
+            renderPage(page);
+        }
     }
 
 
