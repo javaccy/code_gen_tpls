@@ -57,7 +57,6 @@ public class ${name}Controller extends BaseController {
         List<Object> params = Lists.newArrayList();
         String where =  " from ${tableAlias} where ture";
         where = append(where, params, "${tableAlias}.user_name ",getPara("param"), "like");
-        Boolean excel = getParaToBoolean("excel", false);
         String s = "select ${tableAlias}.* ";
         JExcelExorter.DefaultDatasource ds = new JExcelExorter.DefaultDatasource(DB.useBusi(), getPageNumber(),getPageSize(), s, where, params.toArray()) {
             @Override
@@ -65,6 +64,7 @@ public class ${name}Controller extends BaseController {
                 replaceUrl(page.getList(), "image");
             }
         };
+        Boolean excel = getParaToBoolean("excel", false);
         if (excel) {
             String[] headers = {"${titles?join('","')}"};
             String[] columns = {"${columns?join('","')}"};
