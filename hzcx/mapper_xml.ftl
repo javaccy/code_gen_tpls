@@ -24,7 +24,7 @@
         </if>
         <#list columnNames as c>
         <if test="map.${fieldNames[c_index]} != null and map.${fieldNames[c_index]} != ''">
-            and ${tableAlias}.${c} = ${r"#{map."}${c}${r"}"}
+            and ${tableAlias}.${c} = ${r"#{map."}${fieldNames[c_index]}${r"}"}
         </if>
         </#list>
     </select>
