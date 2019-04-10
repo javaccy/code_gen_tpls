@@ -15,7 +15,7 @@
     <sql id="${tableName}_alias_columns">
         <#list columnNames as c><#if c_index==0>${tableAlias}.${c}<#else>,${tableAlias}.${c}</#if></#list>
     </sql>
-    <select id="findMap" resultType="java.util.Map">
+    <select id="findMaps" resultType="java.util.Map">
         select
         <include refid="${tableName}_alias_columns"/>
         from ${tableName} ${tableAlias} where true
