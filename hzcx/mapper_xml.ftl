@@ -22,10 +22,16 @@
         <if test="map.id != null and map.id != ''">
             and ${tableAlias}.id = ${r"#{map.id}"}
         </if>
-        <#list columnNames as c>
-        <if test="map.${fieldNames[c_index]} != null and map.${fieldNames[c_index]} != ''">
-            and ${tableAlias}.${c} = ${r"#{map."}${fieldNames[c_index]}${r"}"}
+        <#list fields as f>
+        <#if f.type.name == 'java.lang.String'>
+        <if test="map.${f.name} != null and map.${f.name} != ''">
+            and ${tableAlias}.${f.columnName} = ${r"#{map."}${f.name}${r"}"}
         </if>
+        <#else>
+        <if test="map.${f.name} != null">
+            and ${tableAlias}.${f.columnName} = ${r"#{map."}${f.name}${r"}"}
+        </if>
+        </#if>
         </#list>
     </select>
     </#if>
