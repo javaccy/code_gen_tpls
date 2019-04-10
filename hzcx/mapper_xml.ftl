@@ -10,4 +10,23 @@
         </#list>
     </resultMap>
 
+
+    <#if (functions.properties('select_map')=='true')??>
+    <sql id="${tableName}_alias_columns">
+        <#list columnNames as c><#if c_index==0>${tableAlias}.${c}<#else>,${tableAlias}.${c}</#if></#list>
+    </sql>
+    <select id="findMap" resultType="java.util.Map">
+        select
+        <include refid="${tableName}_alias_columns"/>
+        from ${tableName} ${tableAlias} where true
+        <if test="map.id != null and map.id != ''">
+            and ${tableAlias}.id = ${r"#{map.id}"}
+        </if>
+        <#list columnNames as c>
+        <if test="map.${fieldNames[c_index]} != null and map.${fieldNames[c_index]} != ''">
+            and ${tableAlias}.${c} = ${r"#{map."}${c}${r"}"}
+        </if>
+        </#list>
+    </select>
+    </#if>
 </mapper>
