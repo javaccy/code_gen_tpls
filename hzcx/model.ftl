@@ -22,13 +22,16 @@ public class ${name} extends Model<${name}> {
     </#if>
     private ${idType.simpleName} ${idName?lower_case};
 
+
     <#list fields as f>
     //${f.comment}
-    <#if f.columnName?contains("_") && f.type.name = 'java.util.Date'>
+    <#if (functions.properties('jsonField')=='true')??>
+        <#if f.columnName?contains("_") && f.type.name = 'java.util.Date'>
     @JSONField(name = "${f.columnName}", format = "YYYY-MM-DD HH:mm:ss")
-    </#if>
-    <#if f.columnName?contains("_") && f.type.name != 'java.util.Date'>
+        </#if>
+        <#if f.columnName?contains("_") && f.type.name != 'java.util.Date'>
     @JSONField(name = "${f.columnName}")
+        </#if>
     </#if>
     private ${f.type.simpleName} ${f.name};
     </#list>
