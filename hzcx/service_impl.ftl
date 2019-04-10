@@ -17,7 +17,7 @@ public class ${name}ServiceImpl extends BaseService<${name}Mapper,${name}> imple
     <#if (functions.properties('select_map')=='true')??>
     @Override
     public List<Map<String, Object>> findMaps(Map<String, Object> map) {
-        return mapper.findMap(map);
+        return mapper.findMaps(map);
     }
 
     @Override
