@@ -34,7 +34,6 @@ public class ${name} extends Model<${name}> {
     @TableId(value = "id", type = IdType.AUTO)
     </#if>
     private ${idType.simpleName} ${idName?lower_case};
-
     <#list fields as f>
     <#if (functions.properties('comment')=='doc')??>
     /**
