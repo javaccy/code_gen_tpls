@@ -10,10 +10,13 @@
         </#list>
     </resultMap>
 
-
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, <#list fields as f><#if f_index+1 ==fields?size>${f.columnName}${f.columnName?contains("_")?string(" AS "+f.name,"")}<#else>${f.columnName}${f.columnName?contains("_")?string(" AS "+f.name,"")}, </#if></#list>
+    </sql>
     <#if (functions.properties('select_map')=='true')??>
     <sql id="${tableName}_alias_columns">
-        <#list columnNames as c><#if c_index==0>${tableAlias}.${c}<#else>,${tableAlias}.${c}</#if></#list>
+        <#list columnNames as c><#if c_index==0>${tableAlias}.${c}<#else>, ${tableAlias}.${c}</#if></#list>
     </sql>
     <select id="findMaps" resultType="java.util.Map">
         select
