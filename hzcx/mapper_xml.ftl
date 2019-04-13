@@ -22,17 +22,17 @@
         id,
         <include refid="${tableName}_alias_columns"/>
         from ${tableName} ${tableAlias} where true
-        <if test="map.id != null and map.id != ''">
-            and ${tableAlias}.id = ${r"#{map.id}"}
+        <if test="params.id != null and params.id != ''">
+            and ${tableAlias}.id = ${r"#{params.id}"}
         </if>
         <#list fields as f>
         <#if f.type.name == 'java.lang.String'>
-        <if test="map.${f.name} != null and map.${f.name} != ''">
-            and ${tableAlias}.${f.columnName} = ${r"#{map."}${f.name}${r"}"}
+        <if test="params.${f.name} != null and params.${f.name} != ''">
+            and ${tableAlias}.${f.columnName} = ${r"#{params."}${f.name}${r"}"}
         </if>
         <#else>
-        <if test="map.${f.name} != null">
-            and ${tableAlias}.${f.columnName} = ${r"#{map."}${f.name}${r"}"}
+        <if test="params.${f.name} != null">
+            and ${tableAlias}.${f.columnName} = ${r"#{params."}${f.name}${r"}"}
         </if>
         </#if>
         </#list>
