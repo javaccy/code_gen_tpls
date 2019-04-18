@@ -32,7 +32,7 @@ public class ${name}ServiceImpl extends BaseService<${name}Mapper,${name}> imple
 
     @Override
     public ${name?cap_first} findOne(Map<String,Object> map) throws Exception {
-        return BeanMapUtils.toObject(map, #{name?cap_first}.class);
+        return BeanMapUtils.toObject(map, ${name?cap_first}.class);
     }
     </#if>
 
