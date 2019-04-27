@@ -27,7 +27,7 @@ public class ${name}ServiceImpl extends BaseService<${name}Mapper,${name}> imple
     @Override
     public Map<String, Object> findMap(Map<String, Object> map) {
     List<Map<String, Object>> maps = findMaps(map);
-        return maps.isEmpty() ? null : maps.get(0);
+        return maps.size() == 1 ? null : maps.get(0);
     }
 
     @Override
