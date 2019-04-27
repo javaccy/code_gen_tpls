@@ -1,5 +1,8 @@
 package ${functions.packageName('service_impl')};
 import com.soft.ware.core.base.controller.BaseService;
+<#if (functions.properties('select_map')=='true')??>
+    import com.soft.ware.core.util.Kv;
+</#if>
 import com.soft.ware.rest.modular.auth.util.BeanMapUtils;
 import ${functions.packageName('mapper')}.${name}Mapper;
 import ${functions.packageName('model')}.${name};
@@ -25,9 +28,9 @@ public class ${name}ServiceImpl extends BaseService<${name}Mapper,${name}> imple
     }
 
     @Override
-    public Map<String, Object> findMap(Map<String, Object> map) {
-    List<Map<String, Object>> maps = findMaps(map);
-        return maps.size() == 1 ? null : maps.get(0);
+    public Kv<String, Object> findMap(Map<String, Object> map) {
+        List<Map<String, Object>> maps = findMaps(map);
+        return maps.size() == 1 ? null : Kv.toKv(maps.get(0));
     }
 
     @Override
