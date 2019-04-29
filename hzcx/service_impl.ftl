@@ -23,19 +23,24 @@ public class ${name}ServiceImpl extends BaseService<${name}Mapper,${name}> imple
 
     <#if (functions.properties('select_map')=='true')??>
     @Override
-    public List<Map<String, Object>> findMaps(Map<String, Object> map) {
-        return mapper.findMaps(map);
+    public List<Map<String, Object>> findMaps(Map<String, Object> params) {
+        return mapper.findMaps(params);
     }
 
     @Override
-    public Kv<String, Object> findMap(Map<String, Object> map) {
-        List<Map<String, Object>> maps = findMaps(map);
+    public Kv<String, Object> findMap(Map<String, Object> params) {
+        List<Map<String, Object>> maps = findMaps(params);
         return maps.size() == 1 ? null : Kv.toKv(maps.get(0));
     }
 
     @Override
-    public ${name?cap_first} findOne(Map<String,Object> map) throws Exception {
-        return BeanMapUtils.toObject(map, ${name?cap_first}.class);
+    public ${name?cap_first} findOne(Map<String,Object> params) throws Exception {
+        return BeanMapUtils.toObject(params, ${name?cap_first}.class);
+    }
+    @Override
+    public List<${name?cap_first}> findList(Map<String,Object> params) throws Exception {
+        List<Map<String, Object>> maps = findMaps(params);
+        return BeanMapUtils.toObject(maps, TOwnerStaff.class);
     }
     </#if>
 
