@@ -17,6 +17,6 @@ public interface ${functions.filePrefix('service')}${name}Service extends IServi
 
     ${name?cap_first} findOne(Map<String, Object> params) throws Exception;
 
-    List<${name?cap_first}> findList(Kv<String, Object> params);
+    List<${name?cap_first}> findList(Map<String, Object> params) throws Exception;
     </#if>
 }

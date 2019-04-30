@@ -40,7 +40,8 @@ public class ${name}ServiceImpl extends BaseService<${name}Mapper,${name}> imple
     @Override
     public List<${name?cap_first}> findList(Map<String,Object> params) throws Exception {
         List<Map<String, Object>> maps = findMaps(params);
-        return BeanMapUtils.toObject(maps, ${name?cap_first}.class);
+        return BeanMapUtil
+        .toObject(maps, ${name?cap_first}.class);
     }
     </#if>
 
