@@ -17,25 +17,32 @@
     <sql id="${tableName}_alias_columns">
         <#list fields as f><#if f_index+1 ==fields?size>${tableAlias}.${f.columnName}${f.columnName?contains("_")?string(" AS "+f.name,"")}<#else>${tableAlias}.${f.columnName}${f.columnName?contains("_")?string(" AS "+f.name,"")}, </#if></#list>
     </sql>
+    <select id="findMapsCount" resultType="long">
+        select count(1) from ${tableName} g where true
+        <include refid="findMapsCondition"/>
+    </select>
     <select id="findMaps" resultType="java.util.Map">
         select
         id,
         <include refid="${tableName}_alias_columns"/>
         from ${tableName} ${tableAlias} where true
+        <include refid="findMapsCondition"/>
+    </select>
+    </#if>
+    <sql id="findMapsCondition">
         <if test="params.id != null and params.id != ''">
             and ${tableAlias}.id = ${r"#{params.id}"}
         </if>
         <#list fields as f>
-        <#if f.type.name == 'java.lang.String'>
+            <#if f.type.name == 'java.lang.String'>
         <if test="params.${f.name} != null and params.${f.name} != ''">
             and ${tableAlias}.${f.columnName} = ${r"#{params."}${f.name}${r"}"}
         </if>
-        <#else>
+            <#else>
         <if test="params.${f.name} != null">
             and ${tableAlias}.${f.columnName} = ${r"#{params."}${f.name}${r"}"}
         </if>
-        </#if>
+            </#if>
         </#list>
-    </select>
-    </#if>
+    </sql>
 </mapper>
