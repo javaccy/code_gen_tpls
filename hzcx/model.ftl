@@ -9,8 +9,8 @@ import com.baomidou.mybatisplus.annotations.TableField;
 </#if>
 import com.baomidou.mybatisplus.annotations.TableName;
 import com.baomidou.mybatisplus.enums.IdType;
-<#if functions.properties('JsonFormat')=='true'>
-    import com.baomidou.mybatisplus.annotations.TableField;
+<#if functions.properties('jsonFormat')=='true'>
+import com.baomidou.mybatisplus.annotations.TableField;
 </#if>
 
 import java.io.Serializable;
