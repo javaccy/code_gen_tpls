@@ -1,7 +1,7 @@
 package ${functions.packageName('service_impl')};
 import com.soft.ware.core.base.controller.BaseService;
 <#if (functions.properties('select_map')=='true')??>
-    import com.soft.ware.core.util.Kv;
+import com.soft.ware.core.util.Kv;
 </#if>
 import com.soft.ware.rest.modular.auth.util.BeanMapUtils;
 import ${functions.packageName('mapper')}.${name}Mapper;
