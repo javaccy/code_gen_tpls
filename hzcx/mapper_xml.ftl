@@ -30,6 +30,7 @@
         <if test="params.orderBy != null and params.orderBy != ''">
             order by ${r"${params.orderBy}"}
         </if>
+        <include refid="com.soft.ware.rest.modular.address.dao.TAddressMapper.params_limit"/>
     </select>
     </#if>
     <sql id="findMapsCondition">
