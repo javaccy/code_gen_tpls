@@ -27,6 +27,9 @@
         <include refid="${tableName}_alias_columns"/>
         from ${tableName} ${tableAlias} where true
         <include refid="findMapsCondition"/>
+        <if test="params.orderBy != null and params.orderBy != ''">
+            order by ${r"${params.orderBy}"}
+        </if>
     </select>
     </#if>
     <sql id="findMapsCondition">

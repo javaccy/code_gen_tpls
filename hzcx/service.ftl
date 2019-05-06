@@ -8,6 +8,14 @@ import ${functions.packageName('model')}.${name};
 import java.util.List;
 import java.util.Map;
 
+/**
+ * <p>
+ * ${tableComment} 服务类
+ * </p>
+ *
+ * @author ${author}
+ * @since ${datetime}
+ */
 public interface ${functions.filePrefix('service')}${name}Service extends IService<${name}> {
 
     <#if (functions.properties('select_map')=='true')??>

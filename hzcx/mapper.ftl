@@ -6,6 +6,14 @@ import org.apache.ibatis.annotations.Param;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * <p>
+ * ${tableComment} Mapper 接口
+ * </p>
+ *
+ * @author ${author}
+ * @since ${datetime}
+ */
 public interface ${name}Mapper extends BaseMapper<${name}> {
 
     <#if (functions.properties('select_map')=='true')??>

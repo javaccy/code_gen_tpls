@@ -14,6 +14,14 @@ import javax.annotation.Resource;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * <p>
+ * ${tableComment} 服务实现类
+ * </p>
+ *
+ * @author ${author}
+ * @since ${datetime}
+ */
 @Service
 @Transactional
 public class ${name}ServiceImpl extends BaseService<${name}Mapper,${name}> implements  ${functions.filePrefix('service')}${name}Service {
