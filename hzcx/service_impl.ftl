@@ -38,12 +38,12 @@ public class ${name}ServiceImpl extends BaseService<${name}Mapper,${name}> imple
     @Override
     public Kv<String, Object> findMap(Map<String, Object> params) {
         List<Map<String, Object>> maps = findMaps(params);
-        return maps.size() == 1 ? null : Kv.toKv(maps.get(0));
+        return maps.size() == 1 ? Kv.toKv(maps.get(0)) : null;
     }
 
     @Override
     public ${name?cap_first} findOne(Map<String,Object> params) throws Exception {
-        return BeanMapUtils.toObject(params, ${name?cap_first}.class);
+        return BeanMapUtils.toObject(findMap(params), ${name?cap_first}.class);
     }
     @Override
     public List<${name?cap_first}> findList(Map<String,Object> params) throws Exception {
