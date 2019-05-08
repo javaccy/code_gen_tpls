@@ -22,4 +22,15 @@ public interface ${name}Mapper extends BaseMapper<${name}> {
 
     long findMapsCount(@Param("params") Map<String, Object> params);
 
+    <#if funs.prop('finds')=='true'>
+        <#import "../macro/macros.ftl" as m>
+        <#list tplGroup.properties as p>
+            <#if p.key?starts_with('findName')>
+                <@m.mybatis_maps_mapper p.value/>
+
+            </#if>
+
+        </#list>
+    </#if>
+
 }

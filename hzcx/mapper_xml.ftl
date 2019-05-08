@@ -49,4 +49,16 @@
             </#if>
         </#list>
     </sql>
+
+    <#if funs.prop('finds')=='true'>
+        <#import "../macro/macros.ftl" as m>
+        <#list tplGroup.properties as p>
+            <#if p.key?starts_with('findName')>
+                <@m.mybatis_maps_xml p.value/>
+
+            </#if>
+        </#list>
+
+    </#if>
+
 </mapper>
