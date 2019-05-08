@@ -51,6 +51,12 @@ public class ${name}ServiceImpl extends BaseService<${name}Mapper,${name}> imple
         return BeanMapUtils.toObject(maps, ${name?cap_first}.class);
     }
     </#if>
+    <#import "./macro/macros.ftl" as macros>
+    <#list tplGroup.properties as p>
+        <#if p.key?starts_with('findName')>
+            <@macros.mybatis_maps_service_impl p.value/>
+        </#if>
+    </#list>
 
 
 }
