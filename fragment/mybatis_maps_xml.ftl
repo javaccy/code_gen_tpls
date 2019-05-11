@@ -41,6 +41,14 @@
         <if test="params.id != null and params.id != ''">
             and ${tableAlias}.id = ${r"#{params.id}"}
         </if>
+        <choose>
+            <when test="params.orderBy != null and params.orderBy != ''">
+                order by ${params.orderBy}
+            </when>
+            <otherwise>
+                order by ${tableAlias}.create_time desc
+            </otherwise>
+        </choose>
         ) as ${tableAlias}
     </select>
     <sql id="find${xxxx}MapsCondition">
