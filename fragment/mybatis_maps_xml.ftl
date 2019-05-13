@@ -17,7 +17,6 @@
         *
         from (
         select
-        id,
         <choose>
             <when test="params.columns != null">
                 <choose>
@@ -43,7 +42,7 @@
         </if>
         <choose>
             <when test="params.orderBy != null and params.orderBy != ''">
-                order by ${params.orderBy}
+                order by ${r"${params.orderBy}"}
             </when>
             <otherwise>
                 order by ${tableAlias}.create_time desc
