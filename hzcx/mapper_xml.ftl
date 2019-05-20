@@ -12,7 +12,7 @@
 
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
-        id, <#list fields as f><#if f_index+1 ==fields?size>${f.columnName}${f.columnName?contains("_")?string(" AS "+f.columnName,"")}<#else>${f.columnName}${f.columnName?contains("_")?string(" AS "+f.columnName,"")}, </#if></#list>
+        <#if idType??>${idName},</#if> <#list fields as f><#if f_index+1 ==fields?size>${f.columnName}${f.columnName?contains("_")?string(" AS "+f.columnName,"")}<#else>${f.columnName}${f.columnName?contains("_")?string(" AS "+f.columnName,"")}, </#if></#list>
     </sql>
 
     <#if (functions.properties('select_map')=='true')??>
@@ -29,5 +29,4 @@
         </#list>
 
     </#if>
-
 </mapper>

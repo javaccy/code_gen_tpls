@@ -32,7 +32,7 @@ public class ${name} extends Model<${name}> {
      * 主键id
      */
     <#if idType.name == 'java.lang.String'>
-    @TableId(value = "id", type = IdType.UUID)
+    @TableId(value = "id", type = IdType.INPUT)
     <#else>
     @TableId(value = "id", type = IdType.AUTO)
     </#if>

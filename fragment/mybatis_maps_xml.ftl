@@ -32,23 +32,45 @@
                 ${r"${params.notColumns}"}
             </when>
             <otherwise>
-                id,
+                <#if idType??>
+                ${idName},
+                </#if>
                 <include refid="${tableName}${xxxx???string(''+xxxx,'')}_alias_columns"/>
             </otherwise>
         </choose>
         from ${tableName} ${tableAlias} where true
-        <if test="params.id != null and params.id != ''">
-            and ${tableAlias}.id = ${r"#{params.id}"}
+        <#if idType.name == 'java.lang.String'>
+        <if test="params.${idName} != null and params.${idName} != ''">
+            and ${tableAlias}.${idName} = ${r"#{params."}${idName}${r"}"}
         </if>
+        <#else>
+        <if test="params.${idName} != null">
+            and ${tableAlias}.${idName} = ${r"#{params."}${idName}${r"}"}
+        </if>
+        </#if>
         <choose>
             <when test="params.orderBy != null and params.orderBy != ''">
                 order by ${r"${params.orderBy}"}
             </when>
-            <otherwise>
+            <when test="params.page != null">
                 order by ${tableAlias}.create_time desc
+            </when>
+            <otherwise>
+                <!-- 没有排序 -->
             </otherwise>
         </choose>
         ) as ${tableAlias}
+        <choose>
+            <when test="params.orderBy != null and params.orderBy != ''">
+                order by ${r"${params.orderBy}"}
+            </when>
+            <when test="params.page != null">
+                order by ${tableAlias}.createTime desc
+            </when>
+            <otherwise>
+                <!-- 没有排序 -->
+            </otherwise>
+        </choose>
     </select>
     <sql id="find${xxxx}MapsCondition">
         <#list fields as f>
