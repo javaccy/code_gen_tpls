@@ -34,7 +34,7 @@ public class ${name} extends Model<${name}> {
     <#if idType.name == 'java.lang.String'>
     @TableId(value = "id", type = IdType.INPUT)
     <#else>
-    @TableId(value = "id", type = IdType.AUTO)
+    @TableId(value = "${idName}", type = IdType.AUTO)
     </#if>
     private ${idType.simpleName} ${idName?lower_case};
     <#list fields as f>
