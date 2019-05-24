@@ -55,7 +55,7 @@ public class ${name} extends Model<${name}> {
     </#if>
     <#if functions.properties('jsonFormat')=='true'>
         <#if f.type.name = 'java.util.Date'>
-    @JsonFormat(pattern = "YYYY-MM-DD HH:mm:ss",timezone="GMT+8")
+    @JsonFormat(pattern = "YYYY-MM-dd HH:mm:ss",timezone="GMT+8")
         </#if>
     </#if>
     <#if functions.properties('jsonProperty')=='true'>
