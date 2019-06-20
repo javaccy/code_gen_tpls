@@ -3,7 +3,7 @@ import com.soft.ware.core.base.controller.BaseService;
 <#if (functions.properties('select_map')=='true')??>
 import com.soft.ware.core.util.Kv;
 </#if>
-import com.soft.ware.rest.modular.auth.util.BeanMapUtils;
+import com.soft.ware.core.util.BeanMapUtils;
 import ${functions.packageName('mapper')}.${name}Mapper;
 import ${functions.packageName('model')}.${name};
 import  ${functions.packageName('service')}.${functions.filePrefix('service')}${name}Service;
