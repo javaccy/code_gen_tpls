@@ -1,5 +1,5 @@
 package ${functions.packageName('service')};
-import com.baomidou.mybatisplus.service.IService;
+import com.soft.ware.core.base.controller.IIService;
 <#if (functions.properties('select_map')=='true')??>
 import com.soft.ware.core.util.Kv;
 </#if>
@@ -16,7 +16,7 @@ import java.util.Map;
  * @author ${author}
  * @since ${datetime}
  */
-public interface ${functions.filePrefix('service')}${name}Service extends IService<${name}> {
+public interface ${functions.filePrefix('service')}${name}Service extends IIService<${name}> {
 
     <#if (functions.properties('select_map')=='true')??>
     List<Map<String,Object>> findMaps(Map<String,Object> params);

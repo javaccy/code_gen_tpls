@@ -6,7 +6,8 @@
 </#if>
 <#if (functions.prop('select_map')=='true')??>
     <sql id="${tableName}${xxxx???string(''+xxxx,'')}_alias_columns">
-        <#list fields as f><#if f_index+1 ==fields?size>${tableAlias}.${f.columnName}${f.columnName?contains("_")?string(" AS "+f.name,"")}<#else>${tableAlias}.${f.columnName}${f.columnName?contains("_")?string(" AS "+f.name,"")}, </#if></#list>
+        <#--<#list fields as f><#if f_index+1 ==fields?size>${tableAlias}.${f.columnName}${f.columnName?contains("_")?string(" AS "+f.name,"")}<#else>${tableAlias}.${f.columnName}${f.columnName?contains("_")?string(" AS "+f.name,"")}, </#if></#list>-->
+        ${aliasColumns?join(",")}
     </sql>
     <select id="find${xxxx}MapsCount" resultType="long">
         select count(1) from ${tableName} ${tableAlias} where true
@@ -54,6 +55,7 @@
             </when>
             <when test="params.page != null">
                 order by ${tableAlias}.create_time desc
+                <include refid="com.soft.ware.rest.modular.address.dao.TAddressMapper.params_limit"/>
             </when>
             <otherwise>
                 <!-- 没有排序 -->

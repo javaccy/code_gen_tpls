@@ -69,6 +69,9 @@ public class ${name} extends Model<${name}> {
     private ${f.type.simpleName} ${f.name};
     </#list>
 
+    //默认构造方法
+    public ${name}(){}
+
 
     public ${idType.simpleName} get${idName?cap_first}() {
         return ${idName?lower_case};
