@@ -47,7 +47,7 @@ public class ${name} extends Model<${name}> {
     </#if>
     <#if functions.properties('jsonField')=='true'>
         <#if f.columnName?contains("_") && f.type.name = 'java.util.Date'>
-    @JSONField(name = "${f.columnName}", format = "YYYY-MM-dd HH:mm:ss")
+    @JSONField(name = "${f.columnName}", format = "yyyy-MM-dd HH:mm:ss")
         </#if>
         <#if f.columnName?contains("_") && f.type.name != 'java.util.Date'>
     @JSONField(name = "${f.columnName}")
@@ -55,7 +55,7 @@ public class ${name} extends Model<${name}> {
     </#if>
     <#if functions.properties('jsonFormat')=='true'>
         <#if f.type.name = 'java.util.Date'>
-    @JsonFormat(pattern = "YYYY-MM-dd HH:mm:ss",timezone="GMT+8")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss",timezone="GMT+8")
         </#if>
     </#if>
     <#if functions.properties('jsonProperty')=='true'>
