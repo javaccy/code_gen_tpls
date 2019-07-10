@@ -23,8 +23,10 @@
     <#if funs.prop('finds')=='true'>
         <#list tplGroup.properties as p>
             <#if p.key?starts_with('findName')>
-                <@m.mybatis_maps_xml p.value/>
+                <#if p.value != "false">
+                    <@m.mybatis_maps_xml p.value/>
 
+                </#if>
             </#if>
         </#list>
 

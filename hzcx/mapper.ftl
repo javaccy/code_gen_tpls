@@ -26,10 +26,11 @@ public interface ${name}Mapper extends BaseMapper<${name}> {
         <#import "../macro/macros.ftl" as m>
         <#list tplGroup.properties as p>
             <#if p.key?starts_with('findName')>
-                <@m.mybatis_maps_mapper p.value/>
+                <#if p.value != "false">
+                    <@m.mybatis_maps_mapper p.value/>
 
+                </#if>
             </#if>
-
         </#list>
     </#if>
 

@@ -56,8 +56,10 @@ public class ${name}ServiceImpl extends BaseService<${name}Mapper,${name}> imple
         <#import "../macro/macros.ftl" as m>
         <#list tplGroup.properties as p>
             <#if p.key?starts_with('findName')>
+                <#if p.value != "false">
                 <@m.mybatis_maps_service_impl p.value/>
 
+                </#if>
             </#if>
         </#list>
 
