@@ -5,6 +5,7 @@
     <#assign xxxx=funs.prop('findName')/>
 </#if>
 <#if (functions.prop('select_map')=='true')??>
+    <!-- todo ${author} find${xxxx}Maps 注释 -->
     <sql id="${tableName}${xxxx???string(''+xxxx,'')}_alias_columns">
         <#--<#list fields as f><#if f_index+1 ==fields?size>${tableAlias}.${f.columnName}${f.columnName?contains("_")?string(" AS "+f.name,"")}<#else>${tableAlias}.${f.columnName}${f.columnName?contains("_")?string(" AS "+f.name,"")}, </#if></#list>-->
         ${aliasColumns?join(",")}
