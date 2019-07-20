@@ -16,15 +16,29 @@ import java.util.Map;
  * @author ${author}
  * @since ${datetime}
  */
-public interface ${functions.filePrefix('service')}${name}Service extends IIService<${name}> {
+public interface ${functions.filePrefix('service')}${name}Service extends IIService<${functions.filePrefix('model')}${name}> {
 
     <#if (functions.properties('select_map')=='true')??>
     List<Map<String,Object>> findMaps(Map<String,Object> params);
 
     Kv<String,Object> findMap(Map<String,Object> params);
 
-    ${name?cap_first} findOne(Map<String, Object> params) throws Exception;
+    ${functions.filePrefix('model')}${name?cap_first} findOne(Map<String, Object> params) throws Exception;
 
-    List<${name?cap_first}> findList(Map<String, Object> params) throws Exception;
+    List<${functions.filePrefix('model')}${name?cap_first}> findList(Map<String, Object> params) throws Exception;
     </#if>
+
+    <#if funs.prop('finds')=='true'>
+        <#import "../macro/macros.ftl" as m>
+        <#list tplGroup.properties as p>
+            <#if p.key?starts_with('findName')>
+                <#if p.value != "false">
+                    <@m.mybatis_maps_service p.value/>
+
+                </#if>
+            </#if>
+        </#list>
+
+    </#if>
+
 }

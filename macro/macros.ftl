@@ -1,3 +1,6 @@
+<#macro mybatis_maps_service mybatisFindName>
+    <#include "../fragment/mybatis_maps_service.ftl"/>
+</#macro>
 <#macro mybatis_maps_service_impl mybatisFindName>
     <#include "../fragment/mybatis_maps_service_impl.ftl"/>
 </#macro>

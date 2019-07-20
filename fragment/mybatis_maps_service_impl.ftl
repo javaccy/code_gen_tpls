@@ -5,7 +5,7 @@
         <#assign xxxx=funs.prop('findName')/>
     </#if>
     @Override
-    public List<Map<String, Object>> find${xxxx}Page(SessionUser user, Page page, GoodsPageParam param) throws Exception {
+    public List<Map<String, Object>> find${xxxx}Page(String ownerId, Page page, ${xxxx}PageParam param) throws Exception {
         Kv<String, Object> params = Kv.obj("ownerId", user.getOwnerId())
         long count = mapper.find${xxxx}MapsCount(params);
         page.setTotal(count);

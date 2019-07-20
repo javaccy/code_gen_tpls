@@ -24,7 +24,7 @@ import java.util.Map;
  */
 @Service
 @Transactional
-public class ${name}ServiceImpl extends BaseService<${name}Mapper,${name}> implements  ${functions.filePrefix('service')}${name}Service {
+public class ${name}ServiceImpl extends BaseService<${name}Mapper,${functions.filePrefix('model')}${name}> implements  ${functions.filePrefix('service')}${name}Service {
 
     @Resource
     private ${name}Mapper mapper;
@@ -42,11 +42,11 @@ public class ${name}ServiceImpl extends BaseService<${name}Mapper,${name}> imple
     }
 
     @Override
-    public ${name?cap_first} findOne(Map<String,Object> params) throws Exception {
+    public ${functions.filePrefix('model')}${name?cap_first} findOne(Map<String,Object> params) throws Exception {
         return BeanMapUtils.toObject(findMap(params), ${name?cap_first}.class);
     }
     @Override
-    public List<${name?cap_first}> findList(Map<String,Object> params) throws Exception {
+    public List<${functions.filePrefix('model')}${name?cap_first}> findList(Map<String,Object> params) throws Exception {
         List<Map<String, Object>> maps = findMaps(params);
         return BeanMapUtils.toObject(maps, ${name?cap_first}.class);
     }
