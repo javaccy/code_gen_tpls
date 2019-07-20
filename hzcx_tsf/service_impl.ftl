@@ -43,12 +43,12 @@ public class ${name}ServiceImpl extends BaseService<${name}Mapper,${functions.fi
 
     @Override
     public ${functions.filePrefix('model')}${name?cap_first} findOne(Map<String,Object> params) throws Exception {
-        return BeanMapUtils.toObject(findMap(params), ${name?cap_first}.class);
+        return BeanMapUtils.toObject(findMap(params), ${functions.filePrefix('model')}${name?cap_first}.class);
     }
     @Override
     public List<${functions.filePrefix('model')}${name?cap_first}> findList(Map<String,Object> params) throws Exception {
         List<Map<String, Object>> maps = findMaps(params);
-        return BeanMapUtils.toObject(maps, ${name?cap_first}.class);
+        return BeanMapUtils.toObject(maps, ${functions.filePrefix('model')}${name?cap_first}.class);
     }
     </#if>
 

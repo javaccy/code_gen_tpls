@@ -6,7 +6,7 @@
     </#if>
     @Override
     public List<Map<String, Object>> find${xxxx}Page(String ownerId, Page page, ${xxxx}PageParam param) throws Exception {
-        Kv<String, Object> params = Kv.obj("ownerId", user.getOwnerId())
+        Kv<String, Object> params = Kv.obj("ownerId", ownerId);
         long count = mapper.find${xxxx}MapsCount(params);
         page.setTotal(count);
         params.put("page", page);
