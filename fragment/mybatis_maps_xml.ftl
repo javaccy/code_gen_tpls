@@ -55,7 +55,7 @@
             </when>
             <when test="params.page != null">
                 order by ${tableAlias}.create_time desc
-                <include refid="com.soft.ware.rest.modular.address.dao.TAddressMapper.params_limit"/>
+                <include refid="com.aiinp.cash.owner.provider.mapper.AAMapper.params_limit"/>
             </when>
             <otherwise>
                 <!-- 没有排序 -->
