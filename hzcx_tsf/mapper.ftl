@@ -1,6 +1,6 @@
 package ${functions.packageName('mapper')};
 import com.aiinp.cash.provider.base.BaseMapper;
-import ${functions.packageName('model')}.${name};
+import ${functions.packageName('model')}.${functions.filePrefix('model')}${name};
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;

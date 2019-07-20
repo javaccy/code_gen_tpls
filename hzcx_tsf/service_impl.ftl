@@ -1,11 +1,12 @@
 package ${functions.packageName('service_impl')};
+import com.aiinp.cash.common.param.Page;
 import com.aiinp.cash.provider.base.BaseService;
 <#if (functions.properties('select_map')=='true')??>
 import com.aiinp.cash.common.tools.Kv;
 </#if>
 import com.aiinp.cash.provider.tools.BeanMapUtils;
 import ${functions.packageName('mapper')}.${name}Mapper;
-import ${functions.packageName('model')}.${name};
+import ${functions.packageName('model')}.${functions.filePrefix('model')}${name};
 import  ${functions.packageName('service')}.${functions.filePrefix('service')}${name}Service;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

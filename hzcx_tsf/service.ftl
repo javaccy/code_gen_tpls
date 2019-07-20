@@ -1,9 +1,10 @@
 package ${functions.packageName('service')};
+import com.aiinp.cash.common.param.Page;
 import com.aiinp.cash.provider.base.IIService;
 <#if (functions.properties('select_map')=='true')??>
 import com.aiinp.cash.common.tools.Kv;
 </#if>
-import ${functions.packageName('model')}.${name};
+import ${functions.packageName('model')}.${functions.filePrefix('model')}${name};
 
 import java.util.List;
 import java.util.Map;
