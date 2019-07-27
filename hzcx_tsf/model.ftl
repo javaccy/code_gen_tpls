@@ -63,7 +63,7 @@ public class ${tpl.filePrefix}${name}${tpl.fileSuffix} extends Model<${tpl.fileP
     @JsonFormat(value = "${f.name}")
         </#if>
     </#if>
-    <#if functions.properties('tableField')=='true' && f.columnName?contains("_")>
+    <#if funs.prop('tableField')=='true' && f.columnName?contains("_")>
     @TableField("${f.columnName}")
     </#if>
     private ${f.type.simpleName} ${f.name};

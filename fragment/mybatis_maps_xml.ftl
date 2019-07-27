@@ -50,6 +50,7 @@
             and ${tableAlias}.${idName} = ${r"#{params."}${idName}${r"}"}
         </if>
         </#if>
+        <include refid="find${xxxx}MapsCondition"/>
         <choose>
             <when test="params.orderBy != null and params.orderBy != ''">
                 order by ${r"${params.orderBy}"}
