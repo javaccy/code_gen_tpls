@@ -58,11 +58,9 @@ public class ${tpl.filePrefix}${name}${tpl.fileSuffix} extends Model<${tpl.fileP
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss",timezone="GMT+8")
         </#if>
     </#if>
-    <#if functions.properties('jsonProperty')=='true'>
         <#if f.columnName?contains("_")>
-    @JsonFormat(value = "${f.name}")
+    @JsonProperty(value = "${f.name}")
         </#if>
-    </#if>
     <#if funs.prop('tableField')=='true' && f.columnName?contains("_")>
     @TableField("${f.columnName}")
     </#if>
