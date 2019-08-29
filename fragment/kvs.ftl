@@ -20,7 +20,7 @@
     <#assign kvs=f.kvs?keys/>
     <#if f.kvs??&&(f.kvs?size>0)>
         <#if f.isString>
-            public static Kv ${f.name}Kvs = Kv.create()
+            public static Kv ${f.name}Kvs = Kv.init()
             <#list kvs as key>
                 <#if key_index+1 == kvs?size>
                     .set(${f.columnName}_${key},"${f.kvs["${key}"]}");
@@ -29,7 +29,7 @@
                 </#if>
             </#list>
         <#elseif f.isNumber>
-            public static Kv ${f.name}Kvs = Kv.create()
+            public static Kv ${f.name}Kvs = Kv.init()
             <#list kvs as key>
                 <#if key_index+1 == kvs?size>
                     <#if key?starts_with('-')>
@@ -46,7 +46,7 @@
                 </#if>
             </#list>
         <#else>
-            public static Kv ${f.name}Kvs = Kv.create()
+            public static Kv ${f.name}Kvs = Kv.init()
             <#list kvs as key>
                 <#if key_index+1 == kvs?size>
                     .set(${f.columnName}_${key},"${f.kvs["${key}"]}");
