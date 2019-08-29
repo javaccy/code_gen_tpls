@@ -12,6 +12,16 @@ import com.baomidou.mybatisplus.annotation.IdType;
 <#if functions.properties('jsonFormat')=='true'>
 import com.fasterxml.jackson.annotation.JsonFormat;
 </#if>
+<#list fields as f>
+    <#if f.columnName?contains("_")>
+import com.fasterxml.jackson.annotation.JsonProperty;
+    <#break/>
+    </#if>
+</#list>
+
+import lombok.Data;
+import lombok.ToString;
+import lombok.experimental.Accessors;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -24,6 +34,9 @@ import java.util.Date;
  * @since ${datetime}
  */
 @TableName("${tableName}")
+@Data
+@ToString
+@Accessors(chain = true)
 public class ${tpl.filePrefix}${name}${tpl.fileSuffix} extends Model<${tpl.filePrefix}${name}${tpl.fileSuffix}> {
 
     private static final long serialVersionUID = 1L;
