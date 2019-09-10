@@ -20,8 +20,9 @@ public interface ${name}Mapper extends BaseMapper<${functions.filePrefix('model'
     List<Map<String, Object>> findMaps(@Param("params") Map<String, Object> params);
     </#if>
 
+    <#--
     long findMapsCount(@Param("params") Map<String, Object> params);
-
+    -->
     <#if funs.prop('finds')=='true'>
         <#import "../macro/macros.ftl" as m>
         <#list tplGroup.properties as p>

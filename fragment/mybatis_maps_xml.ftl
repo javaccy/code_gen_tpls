@@ -10,10 +10,12 @@
         <#--<#list fields as f><#if f_index+1 ==fields?size>${tableAlias}.${f.columnName}${f.columnName?contains("_")?string(" AS "+f.name,"")}<#else>${tableAlias}.${f.columnName}${f.columnName?contains("_")?string(" AS "+f.name,"")}, </#if></#list>-->
         ${aliasColumns?join(",")}
     </sql>
+    <#-- 没用不要了
     <select id="find${xxxx}MapsCount" resultType="long">
         select count(1) from ${tableName} ${tableAlias} where true
         <include refid="find${xxxx}MapsCondition"/>
     </select>
+    -->
     <select id="find${xxxx}Maps" resultType="java.util.Map">
         select
         *
@@ -29,9 +31,6 @@
                         ${r"${params.columns}"}
                     </otherwise>
                 </choose>
-            </when>
-            <when test="params.notColumns != null and params.notColumns != ''">
-                ${r"${params.notColumns}"}
             </when>
             <otherwise>
                 <#if idType??>

@@ -22,8 +22,15 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 import lombok.ToString;
 import lombok.experimental.Accessors;
+import lombok.EqualsAndHashCode;
 
 import java.io.Serializable;
+<#list fields as f>
+<#if f.type.simpleName == "BigDecimal">
+import java.math.BigDecimal;
+    <#break/>
+</#if>
+</#list>
 import java.util.Date;
 /**
  * <p>
@@ -37,6 +44,7 @@ import java.util.Date;
 @Data
 @ToString
 @Accessors(chain = true)
+@EqualsAndHashCode(callSuper = true)
 public class ${tpl.filePrefix}${name}${tpl.fileSuffix} extends Model<${tpl.filePrefix}${name}${tpl.fileSuffix}> {
 
     private static final long serialVersionUID = 1L;
@@ -71,28 +79,35 @@ public class ${tpl.filePrefix}${name}${tpl.fileSuffix} extends Model<${tpl.fileP
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss",timezone="GMT+8")
         </#if>
     </#if>
+     <#if functions.properties('jsonProperty')=='true'>
         <#if f.columnName?contains("_")>
     @JsonProperty(value = "${f.name}")
         </#if>
+     </#if>
     <#if funs.prop('tableField')=='true' && f.columnName?contains("_")>
     @TableField("${f.columnName}")
     </#if>
     private ${f.type.simpleName} ${f.name};
     </#list>
 
-    //默认构造方法
+    /**
+     * 默认构造方法
+     */
     public ${tpl.filePrefix}${name}${tpl.fileSuffix}(){}
 
-
+    <#if funs.prop("getter") == 'true'>
     public ${idType.simpleName} get${idName?cap_first}() {
         return ${idName?lower_case};
     }
-
+    </#if>
+    <#if funs.prop("setter") == 'true'>
     public ${tpl.filePrefix}${name}${tpl.fileSuffix} set${idName?cap_first}(${idType.simpleName} ${idName?lower_case}){
         this.${idName?lower_case} = ${idName?lower_case};return this;
     }
+    </#if>
 
-    <#list fields as f>
+    <#if funs.prop("getter") == 'true' || funs.prop("setter") == 'true'>
+        <#list fields as f>
     <#if funs.prop("getter") == 'true'>
     public ${f.type.simpleName} get${f.name?cap_first}() {
         return ${f.name};
@@ -104,20 +119,25 @@ public class ${tpl.filePrefix}${name}${tpl.fileSuffix} extends Model<${tpl.fileP
         this.${f.name} = ${f.name};return this;
     }
     </#if>
+        </#list>
+    </#if>
 
-    </#list>
+
     @Override
     protected Serializable pkVal() {
         return this.${idName?lower_case};
     }
 
+    <#if funs.prop("toString") == 'true'>
     @Override
     public String toString() {
         return "${tpl.filePrefix}${name}${tpl.fileSuffix}{" +
         "${idName?lower_case}=" + ${idName?lower_case} +
         <#list fields as f>
-        ", ${f.name}=" + ${f.name} +
+            ", ${f.name}=" + ${f.name} +
         </#list>
         "}";
     }
+    </#if>
+
 }

@@ -1,13 +1,11 @@
 package ${functions.packageName('service')};
-import com.aiinp.cash.common.param.Page;
 import com.aiinp.cash.provider.base.IIService;
+<#-- 没用不要了
 <#if (functions.properties('select_map')=='true')??>
 import com.aiinp.cash.common.tools.Kv;
 </#if>
+-->
 import ${functions.packageName('model')}.${functions.filePrefix('model')}${name};
-
-import java.util.List;
-import java.util.Map;
 
 /**
  * <p>
@@ -19,6 +17,7 @@ import java.util.Map;
  */
 public interface ${functions.filePrefix('service')}${name}Service extends IIService<${functions.filePrefix('model')}${name}> {
 
+    <#-- 没用不要了
     <#if (functions.properties('select_map')=='true')??>
     List<Map<String,Object>> findMaps(Map<String,Object> params);
 
@@ -28,7 +27,7 @@ public interface ${functions.filePrefix('service')}${name}Service extends IIServ
 
     List<${functions.filePrefix('model')}${name?cap_first}> findList(Map<String, Object> params) throws Exception;
     </#if>
-
+    -->
     <#if funs.prop('finds')=='true'>
         <#import "../macro/macros.ftl" as m>
         <#list tplGroup.properties as p>

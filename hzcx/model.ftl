@@ -14,6 +14,9 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 </#if>
 
 import java.io.Serializable;
+<#list fields as f>
+    <#if f.type.simpleName == "BigDecimal">import java.math.BigDecimal;<#break/></#if>
+</#list>
 import java.util.Date;
 /**
  * <p>
@@ -58,9 +61,11 @@ public class ${name} extends Model<${name}> {
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss",timezone="GMT+8")
         </#if>
     </#if>
+    <#if functions.properties('jsonProperty')=='true'>
         <#if f.columnName?contains("_")>
     @JsonProperty(value = "${f.name}")
         </#if>
+    </#if>
     <#if functions.properties('tableField')=='true' && f.columnName?contains("_")>
     @TableField("${f.columnName}")
     </#if>

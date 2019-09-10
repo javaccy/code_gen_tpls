@@ -1,10 +1,10 @@
 package ${functions.packageName('service_impl')};
-import com.aiinp.cash.common.param.Page;
 import com.aiinp.cash.provider.base.BaseService;
+<#--
 <#if (functions.properties('select_map')=='true')??>
 import com.aiinp.cash.common.tools.Kv;
 </#if>
-import com.aiinp.cash.provider.tools.BeanMapUtils;
+-->
 import ${functions.packageName('mapper')}.${name}Mapper;
 import ${functions.packageName('model')}.${functions.filePrefix('model')}${name};
 import  ${functions.packageName('service')}.${functions.filePrefix('service')}${name}Service;
@@ -12,8 +12,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
-import java.util.List;
-import java.util.Map;
 
 /**
  * <p>
@@ -24,12 +22,12 @@ import java.util.Map;
  * @since ${datetime}
  */
 @Service
-@Transactional
+@Transactional(rollbackFor = Throwable.class)
 public class ${name}ServiceImpl extends BaseService<${name}Mapper,${functions.filePrefix('model')}${name}> implements  ${functions.filePrefix('service')}${name}Service {
 
     @Resource
     private ${name}Mapper mapper;
-
+    <#--
     <#if (functions.properties('select_map')=='true')??>
     @Override
     public List<Map<String, Object>> findMaps(Map<String, Object> params) {
@@ -52,7 +50,7 @@ public class ${name}ServiceImpl extends BaseService<${name}Mapper,${functions.fi
         return BeanMapUtils.toObject(maps, ${functions.filePrefix('model')}${name?cap_first}.class);
     }
     </#if>
-
+    -->
     <#if funs.prop('finds')=='true'>
         <#import "../macro/macros.ftl" as m>
         <#list tplGroup.properties as p>
