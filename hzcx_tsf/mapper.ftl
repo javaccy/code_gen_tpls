@@ -15,12 +15,12 @@ import java.util.Map;
  * @since ${datetime}
  */
 public interface ${name}Mapper extends BaseMapper<${functions.filePrefix('model')}${name}> {
-
+    <#-- 没用不要了
     <#if (functions.properties('select_map')=='true')??>
     List<Map<String, Object>> findMaps(@Param("params") Map<String, Object> params);
     </#if>
-
-    <#--
+    -->
+    <#-- 没用不要了
     long findMapsCount(@Param("params") Map<String, Object> params);
     -->
     <#if funs.prop('finds')=='true'>
