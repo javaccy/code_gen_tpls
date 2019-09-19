@@ -40,11 +40,11 @@ import java.util.Date;
  * @author ${author}
  * @since ${datetime}
  */
-@TableName("${tableName}")
 @Data
 @ToString
 @Accessors(chain = true)
 @EqualsAndHashCode(callSuper = true)
+@TableName("${tableName}")
 public class ${tpl.filePrefix}${name}${tpl.fileSuffix} extends Model<${tpl.filePrefix}${name}${tpl.fileSuffix}> {
 
     private static final long serialVersionUID = 1L;
