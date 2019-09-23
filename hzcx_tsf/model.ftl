@@ -34,7 +34,7 @@ import java.math.BigDecimal;
 import java.util.Date;
 /**
  * <p>
- * ${tableComment}
+ * ${tableComment!''}
  * </p>
  *
  * @author ${author}
@@ -61,7 +61,7 @@ public class ${tpl.filePrefix}${name}${tpl.fileSuffix} extends Model<${tpl.fileP
     <#list fields as f>
     <#if (functions.properties('comment')=='doc')??>
     /**
-     * ${f.comment}
+     * ${f.comment!''}
      */
     <#else>
     //${f.comment}
