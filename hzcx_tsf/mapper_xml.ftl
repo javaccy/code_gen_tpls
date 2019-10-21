@@ -14,11 +14,11 @@
     <sql id="Base_Column_List">
         <#if idType??>${idName},</#if> <#list fields as f><#if f_index+1 ==fields?size>${f.columnName}${f.columnName?contains("_")?string(" AS "+f.columnName,"")}<#else>${f.columnName}${f.columnName?contains("_")?string(" AS "+f.columnName,"")}, </#if></#list>
     </sql>
-
+    <#--
     <#if (functions.properties('select_map')=='true')??>
         <@m.mybatis_maps_xml ''/>
     </#if>
-
+    -->
 
     <#if funs.prop('finds')=='true'>
         <#list tplGroup.properties as p>
