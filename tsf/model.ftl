@@ -65,8 +65,8 @@ public class ${tpl.filePrefix}${name}${tpl.fileSuffix} extends Model<${tpl.fileP
         <#if f.columnName?contains("_") && f.type.name = 'java.util.Date'>
     @JSONField(name = "${f.columnName}", format = "yyyy-MM-dd HH:mm:ss")
         </#if>
-        <#if f.columnName?contains("_") && f.type.name != 'java.util.Date'>
-    @JSONField(name = "${f.columnName}")
+        <#if f.columnName?contains("_")>
+    @JSONField(name = "${f.name}")
         </#if>
     </#if>
     <#if functions.properties('jsonFormat')=='true'>
