@@ -16,7 +16,11 @@
         <include refid="find${xxxx}MapsCondition"/>
     </select>
     -->
+    <#if funs.prop("findMode") == "vo">
+    <select id="find${xxxx}List">
+    <#else>
     <select id="find${xxxx}Maps" resultType="java.util.Map">
+    </#if>
         select
         *
         from (
@@ -49,7 +53,11 @@
             and ${tableAlias}.${idName} = ${r"#{params."}${idName}${r"}"}
         </if>
         </#if>
+        <#if funs.prop("findMode") == "vo">
+        <include refid="find${xxxx}${name}ListCondition"/>
+        <#else>
         <include refid="find${xxxx}MapsCondition"/>
+        </#if>
         <choose>
             <when test="params.orderBy != null and params.orderBy != ''">
                 order by ${r"${params.orderBy}"}
@@ -75,7 +83,11 @@
             </otherwise>
         </choose>
     </select>
+    <#if funs.prop("findMode") == "vo">
+        <sql id="find${xxxx}${name}ListCondition">
+    <#else>
     <sql id="find${xxxx}MapsCondition">
+    </#if>
         <#list fields as f>
             <#if f.type.name == 'java.lang.String'>
                 <#if ((f.jdbcType == 'VARCHAR' || f.jdbcType == 'varchar') && f.columnLength < 200) || f.jdbcType == 'CHAR' || f.jdbcType == 'char'>
