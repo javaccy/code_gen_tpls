@@ -15,5 +15,15 @@
         <#if idType??>${idName},</#if> <#list fields as f><#if f_index+1 ==fields?size>${f.columnName}${f.columnName?contains("_")?string(" AS "+f.columnName,"")}<#else>${f.columnName}${f.columnName?contains("_")?string(" AS "+f.columnName,"")}, </#if></#list>
     </sql>
 
+    <#if funs.prop('finds')=='true'>
+        <#import "../macro/macros.ftl" as m>
+        <#list tplGroup.properties as p>
+            <#if p.key?starts_with('findName')>
+                <#if p.value != "false">
+                    <@m.mybatis_maps_xml p.value/>
 
+                </#if>
+            </#if>
+        </#list>
+    </#if>
 </mapper>

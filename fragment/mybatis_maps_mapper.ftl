@@ -5,8 +5,22 @@
         <#assign xxxx=funs.prop('findName')/>
     </#if>
     <#if funs.prop("findMode") == "vo">
-    List<${xxxx}${name}PageVO> find${xxxx}List(@Param("params") ${xxxx}${name}PageDTO params);
+
+    /**
+     * 分页查询
+     * @param params 查询参数
+     * @return       返回结果
+     * @throws Exception 查询失败
+     */
+    List<${xxxx}${name}PageVO> find${xxxx}Page(@Param("params") ${xxxx}${name}PageDTO params);
     <#else>
-    List<Map<String,Object>> find${xxxx}Maps(@Param("params") Map<String,Object> params);
+
+    /**
+     * 分页查询`
+     * @param params 查询参数
+     * @return       返回结果
+     * @throws Exception 查询失败`
+     */
+    List<Map<String,Object>> find${xxxx}Maps(@Param("params") ${xxxx}${name}PageDTO params);
     </#if>
 

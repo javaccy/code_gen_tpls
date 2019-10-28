@@ -1,6 +1,6 @@
 package ${funs.packageName("feign_service")};
 
-import com.aiinp.tsf.order.dto.Id;
+import com.aiinp.tsf.order.dto.IdDTO;
 import ${funs.packageName("model")}.${name};
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -20,6 +20,6 @@ public interface Feign${name}Service {
      * @return   订单信息
     */
     @PostMapping(value = "/")
-    ${name} getById(@RequestBody Id id);
+    ${name} getById(@RequestBody IdDTO id);
 
 }

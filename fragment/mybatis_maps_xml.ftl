@@ -17,7 +17,7 @@
     </select>
     -->
     <#if funs.prop("findMode") == "vo">
-    <select id="find${xxxx}List">
+    <select id="find${xxxx}Page" resultType=" ${funs.packageName("find_page_vo")}.${xxxx}${name}PageVO">
     <#else>
     <select id="find${xxxx}Maps" resultType="java.util.Map">
     </#if>

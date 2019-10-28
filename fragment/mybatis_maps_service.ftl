@@ -4,13 +4,24 @@
     <#else >
         <#assign xxxx=funs.prop('findName')/>
     </#if>
+
     <#if funs.prop("findMode") == "vo">
-    List<${xxxx}${name}PageVO> find${xxxx}${name}Page(${xxxx}${name}PageDTO params) throws Exception;
+
+    /**
+     * 分页查询
+     * @param params 查询参数
+     * @return       返回结果
+     * @throws Exception 查询失败
+     */
+    List<${xxxx}${name}PageVO> find${xxxx}Page(${xxxx}${name}PageDTO params) throws Exception;
     <#else>
-    List<Map<String, Object>> find${xxxx}Page(Page page, ${xxxx}PageParam param) throws Exception;
 
-    List<Map<String, Object>> find${xxxx}Maps(Map<String, Object> map);
-
-    Kv<String, Object> find${xxxx}Map(Map<String, Object> map);
+    /**
+     * 分页查询
+     * @param params 查询参数
+     * @return       返回结果
+     * @throws Exception 查询失败
+     */
+    List<Map<String, Object>> find${xxxx}Page(${xxxx}PageDTO params) throws Exception;
     </#if>
 

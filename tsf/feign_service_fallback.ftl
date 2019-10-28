@@ -1,6 +1,6 @@
 package ${funs.packageName("feign_service_fallback")};
 
-import com.aiinp.tsf.order.dto.Id;
+import com.aiinp.tsf.order.dto.IdDTO;
 import ${funs.packageName("model")}.${name};
 import feign.hystrix.FallbackFactory;
 
@@ -14,7 +14,7 @@ class Feign${name}ServiceFallback implements FallbackFactory${r"<Feign"}${name}$
     public Feign${name}Service create(Throwable cause) {
         return new FeignOrderService() {
             @Override
-            public ${name} getById(Id id) {
+            public ${name} getById(IdDTO id) {
                 return null;
             }
         };

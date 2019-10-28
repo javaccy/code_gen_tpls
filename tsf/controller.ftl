@@ -2,7 +2,7 @@ package ${funs.packageName("controller")};
 
 import ${funs.packageName("feign_service")}.${functions.filePrefix('feign_service')}${name}${functions.fileSuffix('feign_service')};
 import ${funs.packageName('service')}.${name}${functions.fileSuffix('service')};
-import com.aiinp.tsf.order.dto.Id;
+import com.aiinp.tsf.order.dto.IdDTO;
 import com.aiinp.tsf.order.model.Order;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,7 +21,7 @@ public class ${name}Controller extends BaseController implements FeignOrderServi
 
 
     @Override
-    public ${name} getById(Id id){
+    public ${name} getById(IdDTO id){
         return ${name?uncap_first}Service.getById(id.getId());
     }
 
