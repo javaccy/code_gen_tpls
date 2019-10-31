@@ -21,7 +21,7 @@ public class ${name}Controller extends BaseController implements FeignOrderServi
 
 
     @Override
-    public ${name} getById(IdDTO id){
+    public ${name} getById(CommonIdDTO id){
         return ${name?uncap_first}Service.getById(id.getId());
     }
 

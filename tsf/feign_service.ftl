@@ -20,6 +20,6 @@ public interface Feign${name}Service {
      * @return   订单信息
     */
     @PostMapping(value = "/")
-    ${name} getById(@RequestBody IdDTO id);
+    ${name} getById(@RequestBody CommonIdDTO id);
 
 }

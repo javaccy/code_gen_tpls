@@ -14,7 +14,7 @@ class Feign${name}ServiceFallback implements FallbackFactory${r"<Feign"}${name}$
     public Feign${name}Service create(Throwable cause) {
         return new FeignOrderService() {
             @Override
-            public ${name} getById(IdDTO id) {
+            public ${name} getById(CommonIdDTO id) {
                 return null;
             }
         };
