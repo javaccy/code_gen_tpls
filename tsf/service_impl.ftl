@@ -1,4 +1,13 @@
 package ${functions.packageName('service_impl')};
+<#if funs.prop('finds')=='true'>
+    <#list tplGroup.properties as p>
+        <#if p.key?starts_with('findName')>
+            <#if p.value != "false">
+import ${functions.packageName('find_page_dto')}.${p.value}${name}PageDTO;
+            </#if>
+        </#if>
+    </#list>
+</#if>
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 <#--
 <#if (functions.properties('select_map')=='true')??>
