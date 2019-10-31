@@ -1,7 +1,8 @@
 package ${functions.packageName('mapper')};
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import ${functions.packageName('model')}.${functions.filePrefix('model')}${name};
-
+import java.util.List;
+import java.util.Map;
 /**
  * <p>
  * ${tableComment} Mapper 接口111

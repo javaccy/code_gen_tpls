@@ -6,7 +6,8 @@ import com.aiinp.cash.common.tools.Kv;
 </#if>
 -->
 import ${functions.packageName('model')}.${functions.filePrefix('model')}${name};
-
+import java.util.List;
+import java.util.Map;
 /**
  * <p>
  * ${tableComment} 服务类
