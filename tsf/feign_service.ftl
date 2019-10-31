@@ -1,6 +1,6 @@
 package ${funs.packageName("feign_service")};
 
-import com.aiinp.tsf.order.dto.IdDTO;
+import com.aiinp.tsf.common.model.dto.CommonIdDTO;
 import ${funs.packageName("model")}.${name};
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.PostMapping;
