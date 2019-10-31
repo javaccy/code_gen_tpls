@@ -22,6 +22,6 @@
      * @return       返回结果
      * @throws Exception 查询失败
      */
-    List<Map<String, Object>> find${xxxx}Page(${xxxx}PageDTO params) throws Exception;
+    List<Map<String, Object>> find${xxxx}Page(${xxxx}${name}PageDTO params) throws Exception;
     </#if>
 

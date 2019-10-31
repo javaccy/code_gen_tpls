@@ -14,7 +14,7 @@
     }
     <#else>
     @Override
-    public List${r"<Map<String, Object>>"} find${xxxx}Page(${xxxx}PageDTO params) throws Exception {
+    public List${r"<Map<String, Object>>"} find${xxxx}Page(${xxxx}${name}PageDTO params) throws Exception {
         long count = (Long) mapper.findCustomerMaps(params).get(0).get("count");
         params.setTotal(count);
         return mapper.findCustomerMaps(params);
