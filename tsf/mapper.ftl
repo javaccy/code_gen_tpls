@@ -10,6 +10,7 @@ package ${functions.packageName('mapper')};
 </#if>
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import ${functions.packageName('model')}.${functions.filePrefix('model')}${name};
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import org.apache.ibatis.annotations.Param;
 import java.util.List;
 import java.util.Map;

@@ -9,6 +9,7 @@ package ${functions.packageName('service')};
     </#list>
 </#if>
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 <#-- 没用不要了
 <#if (functions.properties('select_map')=='true')??>
 import com.aiinp.cash.common.tools.Kv;

@@ -21,6 +21,6 @@
      * @return       返回结果
      * @throws Exception 查询失败`
      */
-    List<Map<String,Object>> find${xxxx}Maps(@Param("params") ${xxxx}${name}PageDTO params);
+    List<Map<String,Object>> find${xxxx}Maps(@Param("page") Page page, @Param("params") ${xxxx}${name}PageDTO params);
     </#if>
 

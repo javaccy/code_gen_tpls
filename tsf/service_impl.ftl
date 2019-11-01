@@ -9,6 +9,7 @@ import ${functions.packageName('find_page_dto')}.${p.value}${name}PageDTO;
     </#list>
 </#if>
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 <#--
 <#if (functions.properties('select_map')=='true')??>
 import com.aiinp.cash.common.tools.Kv;
