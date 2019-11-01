@@ -13,15 +13,6 @@ import lombok.experimental.Accessors;
 @ToString
 @Accessors(chain = true)
 @EqualsAndHashCode(callSuper = true)
-public class ${name}PageDTO extends PageDTO {
+public class ${name}PageDTO {
 
-    /**
-     * 分页
-     *
-     * @param page
-     * @param size
-     */
-    public CustomerOrderPageDTO(Integer page, Integer size) {
-        super(page, size);
-    }
 }
