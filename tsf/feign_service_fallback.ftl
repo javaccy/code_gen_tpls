@@ -1,6 +1,6 @@
 package ${funs.packageName("feign_service_fallback")};
 
-import com.aiinp.tsf.common.model.dto.CommonIdDTO;
+com.aiinp.tsf.provider.model.dto.CommonIdDTO
 import ${funs.packageName("model")}.${name};
 import feign.hystrix.FallbackFactory;
 
