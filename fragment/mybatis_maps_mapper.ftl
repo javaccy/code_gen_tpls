@@ -16,10 +16,10 @@
     <#else>
 
     /**
-     * 分页查询`
+     * 分页查询
      * @param params 查询参数
      * @return       返回结果
-     * @throws Exception 查询失败`
+     * @throws Exception 查询失败
      */
     List<Map<String,Object>> find${xxxx}Maps(@Param("page") Page page, @Param("params") ${xxxx}${name}PageDTO params);
     </#if>
