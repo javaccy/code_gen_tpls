@@ -64,7 +64,7 @@
             </when>
             <when test="params.page != null">
                 order by ${tableAlias}.create_time desc
-                <include refid="com.aiinp.cash.provider.base.mapper.AAMapper.params_limit"/>
+                <include refid="com.aiinp.tsf.order.app.mapper.AaMapper.params_limit"/>
             </when>
             <otherwise>
                 <!-- 没有排序 -->
@@ -84,7 +84,7 @@
         </choose>
     </select>
     <#if funs.prop("findMode") == "vo">
-        <sql id="find${xxxx}${name}ListCondition">
+    <sql id="find${xxxx}${name}ListCondition">
     <#else>
     <sql id="find${xxxx}MapsCondition">
     </#if>
