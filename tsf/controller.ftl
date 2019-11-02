@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 *  @since ${datetime}
 */
 @RestController
-@RequestMapping(value = "/${name?uncap_first}")
+@RequestMapping(value = "/${tableName?substring(2)?replace('_','/')}")
 public class ${name}Controller extends BaseController implements Feign${name}Service {
 
     @Autowired
