@@ -3,7 +3,7 @@ package ${functions.packageName('mapper')};
     <#list tplGroup.properties as p>
         <#if p.key?starts_with('findName')>
             <#if p.value != "false">
-                import ${functions.packageName('find_page_dto')}.${p.value}${name}PageDTO;
+import ${functions.packageName('find_page_dto')}.${p.value}${name}PageDTO;
             </#if>
         </#if>
     </#list>
