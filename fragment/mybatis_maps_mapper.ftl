@@ -12,7 +12,7 @@
      * @return       返回结果
      * @throws Exception 查询失败
      */
-    List<${xxxx}${name}${r"PageVO>"} find${xxxx}Page(@Param("params") ${xxxx}${name}PageDTO params);
+    List<${xxxx}${name}${r"PageVO>"} find${xxxx}Page(@Param("params") ${xxxx}${name}PageDTO params, @Param("page") PageDTO page, );
     <#else>
 
     /**
@@ -21,6 +21,6 @@
      * @return       返回结果
      * @throws Exception 查询失败
      */
-    List${r"<Map<String,Object>>"} find${xxxx}Maps(@Param("page") Page page, @Param("params") ${xxxx}${name}PageDTO params);
+    List${r"<Map<String,Object>>"} find${xxxx}Maps(@Param("params") ${xxxx}${name}PageDTO params, @Param("page") PageDTO page);
     </#if>
 

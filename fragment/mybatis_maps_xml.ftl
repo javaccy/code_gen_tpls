@@ -26,21 +26,21 @@
         from (
         select
         <choose>
-            <when test="params.columns != null">
-                <choose>
-                    <when test="params.columns == ''">
-                        count(1) count
-                    </when>
-                    <otherwise>
-                        ${r"${params.columns}"}
-                    </otherwise>
-                </choose>
+            <when test="page == null">
+                count(1) count
             </when>
             <otherwise>
-                <#if idType??>
-                ${idName},
-                </#if>
-                <include refid="${tableName}${xxxx???string(''+xxxx,'')}_alias_columns"/>
+                <choose>
+                    <when test="page.columns == null and page.columns == ''">
+                        <#if idType??>
+                            ${idName},
+                        </#if>
+                        <include refid="${tableName}${xxxx???string(''+xxxx,'')}_alias_columns"/>
+                    </when>
+                    <otherwise>
+                        ${r"${page.columns}"}
+                    </otherwise>
+                </choose>
             </otherwise>
         </choose>
         from ${tableName} ${tableAlias} where true
@@ -59,10 +59,7 @@
         <include refid="find${xxxx}MapsCondition"/>
         </#if>
         <choose>
-            <when test="params.orderBy != null and params.orderBy != ''">
-                order by ${r"${params.orderBy}"}
-            </when>
-            <when test="params.page != null">
+            <when test="page != null">
                 order by ${tableAlias}.create_time desc
                 <include refid="com.aiinp.tsf.order.app.mapper.AaMapper.params_limit"/>
             </when>
@@ -72,10 +69,7 @@
         </choose>
         ) as ${tableAlias}
         <choose>
-            <when test="params.orderBy != null and params.orderBy != ''">
-                order by ${r"${params.orderBy}"}
-            </when>
-            <when test="params.page != null">
+            <when test="page != null">
                 order by ${tableAlias}.createTime desc
             </when>
             <otherwise>
