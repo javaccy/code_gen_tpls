@@ -31,7 +31,7 @@
             </when>
             <otherwise>
                 <choose>
-                    <when test="page.columns == null and page.columns == ''">
+                    <when test="page.columns == null or page.columns == ''">
                         <#if idType??>
                             ${idName},
                         </#if>
