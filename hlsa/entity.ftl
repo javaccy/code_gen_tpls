@@ -117,11 +117,12 @@ public class ${tpl.filePrefix}${name}${tpl.fileSuffix} implements Serializable {
         </#list>
     </#if>
 
-
+    <#--
     @Override
     protected Serializable pkVal() {
         return this.${funs.camelcase(idName?lower_case)};
     }
+    -->
 
     <#if funs.prop("toString") == 'true'>
     @Override
