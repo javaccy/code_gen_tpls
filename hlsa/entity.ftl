@@ -6,23 +6,21 @@ import com.baomidou.mybatisplus.annotation.TableId;
 <#if functions.properties('tableField')=='true'>
 import com.baomidou.mybatisplus.annotation.TableField;
 </#if>
-import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.annotation.IdType;
 <#if functions.properties('jsonFormat')=='true'>
 import com.fasterxml.jackson.annotation.JsonFormat;
 </#if>
 
-
+import io.swagger.annotations.ApiModel;
 import lombok.Data;
-import lombok.ToString;
 import lombok.experimental.Accessors;
 import lombok.EqualsAndHashCode;
-
+import io.swagger.annotations.ApiModelProperty;
 import java.io.Serializable;
 <#list fields as f>
 <#if f.type.simpleName == "BigDecimal">
 import java.math.BigDecimal;
-    <#break/>
+<#break/>
 </#if>
 </#list>
 import java.util.Date;
@@ -36,7 +34,7 @@ import java.util.Date;
  */
 @Data
 @Accessors(chain = true)
-@EqualsAndHashCode(callSuper = true)
+@EqualsAndHashCode
 @ApiModel(value="${name}对象", description="${tableComment}")
 public class ${tpl.filePrefix}${name}${tpl.fileSuffix} implements Serializable {
 
@@ -52,11 +50,11 @@ public class ${tpl.filePrefix}${name}${tpl.fileSuffix} implements Serializable {
     </#if>
     private ${idType.simpleName} ${funs.camelcase(idName?lower_case)};
     <#list fields as f>
-    <#if (functions.properties('comment')=='doc')??>
+    <#if functions.properties('comment') == 'doc'>
     /**
      * ${f.comment!''}
      */
-    <#elseif (funs.prop('comment')=='swagger')??>
+    <#elseif functions.properties('comment') == 'swagger'>
     @ApiModelProperty(value = "${f.comment}")
     <#else>
     //${f.comment}
