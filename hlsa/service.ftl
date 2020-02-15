@@ -1,6 +1,6 @@
 package ${functions.packageName('service')};
 
-import ${functions.packageName('entity')};
+import ${functions.packageName('entity')}.${name};
 import com.baomidou.mybatisplus.extension.service.IService;
 
 /**

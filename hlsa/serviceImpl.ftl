@@ -1,8 +1,8 @@
 package ${functions.packageName('serviceImpl')};
 
-import ${functions.packageName('entity')};
-import ${functions.packageName('mapper')};
-import ${functions.packageName('service')};
+import ${functions.packageName('entity')}.${name};
+import ${functions.packageName('mapper')}.${name}Mapper;
+import ${functions.packageName('service')}.I${name}Service;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
 

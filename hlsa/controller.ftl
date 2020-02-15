@@ -15,7 +15,7 @@ import com.hlsa.common.utils.other.BaseController;
  * @since 2020-02-14
  */
 @Controller
-@RequestMapping("/dispatching-info")
+@RequestMapping("/${(tableName?replace(tplGroup.tablePrefix,""))?replace("_","-")}")
 public class ${name}Controller extends BaseController {
 
 }

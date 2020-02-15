@@ -1,6 +1,6 @@
 package ${functions.packageName('mapper')};
 
-import com.hlsa.test.entity.FireDoc;
+import ${functions.packageName('entity')}.${name};
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 
 /**
