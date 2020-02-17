@@ -10,8 +10,8 @@
 |:----    |:---|:----- |-----   |
 |${funs.camelcase(idName?lower_case)}|是|idType.simpleName|comment|
 <#list fields as f>
-    <#if f.columnName?lower_case == "create_time" || f.columnName?lower_case == "update_time" || f.columnName?lower_case == "create_by" || f.columnName?lower_case == "update_by" || f.columnName?lower_case == "is_delete" || f.columnName?lower_case == "del_flag" || f.columnName?lower_case == "is_use">
-        <#break>
+    <#if f.columnName?lower_case == "created_time" || f.columnName?lower_case == "updated_time" || f.columnName?lower_case == "created_by" || f.columnName?lower_case == "updated_by" || f.columnName?lower_case == "is_delete" || f.columnName?lower_case == "del_flag" || f.columnName?lower_case == "is_use">
+        <#continue >
     <#else>
 |${f.name} |否  |${f.type.simpleName?lower_case} |${f.comment}   |
     </#if>

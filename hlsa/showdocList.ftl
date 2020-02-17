@@ -15,7 +15,7 @@
 |参数名|必选|类型|说明|
 |:----    |:---|:----- |-----   |
 <#list fields as f>
-    |${f.name} |否  |${f.type.simpleName?lower_case} |${f.comment}   |
+|${f.name} |否  |${f.type.simpleName?lower_case} |${f.comment}   |
 </#list>
 
 **返回示例**
@@ -27,16 +27,17 @@
     "total":0,
     "rows": {
         [
-        "${funs.camelcase(idName?lower_case)}": 1,
+            {"${funs.camelcase(idName?lower_case)}": 1,
         <#list fields as f>
             <#if f.type.simpleName == 'Integer'>
-                "${f.name}": ${1}<#if !f_has_next>,</#if>
+            "${f.name}": ${1}<#if !f_has_next>,</#if>
             <#elseif f.type.simpleName == "BigDecmail">
-                "${f.name}": 0.01<#if !f_has_next>,</#if>
+            "${f.name}": 0.01<#if !f_has_next>,</#if>
             <#else>
-                "${f.name}": "${f.comment}"<#if !f_has_next>,</#if>
+            "${f.name}": "${f.comment}"<#if !f_has_next>,</#if>
             </#if>
         </#list>
+            }
         ]
     }
 }

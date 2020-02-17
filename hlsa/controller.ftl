@@ -26,7 +26,7 @@ import java.util.ArrayList;
  * </p>
  *
  * @author ${author}
- * @since ${datetime}
+ * @since ${date}
  */
 @Controller
 @RequestMapping("/${(tableName?replace(tplGroup.tablePrefix,""))?replace("_","-")}")
