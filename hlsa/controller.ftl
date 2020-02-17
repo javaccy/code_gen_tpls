@@ -1,12 +1,11 @@
 package ${functions.packageName('controller')};
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.hlsa.common.utils.other.AjaxResult;
 import com.hlsa.common.utils.other.StringUtils;
 import com.hlsa.common.utils.other.TableDataInfo;
-import com.hlsa.datainput.entity.Firefighter;
-import com.hlsa.datainput.service.IFirefighterService;
+import ${functions.packageName('entity')}.${name};
+import ${functions.packageName('service')}.I${name}Service;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -17,8 +16,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.stereotype.Controller;
 import com.hlsa.common.utils.other.BaseController;
 
+import java.util.Date;
 import java.util.List;
-import java.util.ArrayList;
 
 /**
  * <p>
@@ -54,7 +53,7 @@ public class ${tpl.filePrefix}${name}Controller extends BaseController {
         }
         <#elseif f.type.simpleName == 'Integer'>
         //根据${f.comment}搜索
-        if(${name?uncap_first}.get${f.name?cap_first} != null ){
+        if(${name?uncap_first}.get${f.name?cap_first}() != null ){
             queryWrapper.eq("${f.columnName?lower_case}", ${name?uncap_first}.get${f.name?cap_first}());
         }
         </#if>
@@ -101,7 +100,7 @@ public class ${tpl.filePrefix}${name}Controller extends BaseController {
     @DeleteMapping("/del")
     public AjaxResult del(${name} ${name?uncap_first}){
         <#if funs.containsColumn("is_delete")>
-        ${name?uncap_first}${funs.fileSuffix("service")}.updateById(new ${name}().set${funs.camelcase(idName?lower_case)?cap_first}(${name}.get${funs.camelcase(idName?lower_case)?cap_first}()).setDelFlag(DelFlag.DELETED.name()));
+        ${name?uncap_first}${funs.fileSuffix("service")}.updateById(new ${name}().set${funs.camelcase(idName?lower_case)?cap_first}(${name?uncap_first}.get${funs.camelcase(idName?lower_case)?cap_first}()).setIsDelete(Boolean.TRUE));
         <#else>
         ${name?uncap_first}${funs.fileSuffix("service")}.removeById(${name?uncap_first}.get${funs.camelcase(idName?lower_case)?cap_first}());
         </#if>
