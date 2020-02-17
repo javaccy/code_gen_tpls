@@ -47,10 +47,15 @@ public class ${tpl.filePrefix}${name}Controller extends BaseController {
         QueryWrapper<${name}> queryWrapper = new QueryWrapper<>();
 
         <#list fields as f>
-        <#if f.type.simpleName == 'String' || f.type.simpleName == 'Integer'>
+        <#if f.type.simpleName == 'String'>
         //根据${f.comment}搜索
-        if(StringUtils.isNotEmpty(${name?uncap_first}.get${f.name?cap_first}())){
-        queryWrapper.eq("${f.columnName?lower_case}", ${name?uncap_first}.get${f.name?cap_first}());
+        if(StringUtils.isNotEmpty(${name?uncap_first}.get${f.name?cap_first}()) ){
+            queryWrapper.eq("${f.columnName?lower_case}", ${name?uncap_first}.get${f.name?cap_first}());
+        }
+        <#elseif f.type.simpleName == 'Integer'>
+        //根据${f.comment}搜索
+        if(${name?uncap_first}.get${f.name?cap_first} != null ){
+            queryWrapper.eq("${f.columnName?lower_case}", ${name?uncap_first}.get${f.name?cap_first}());
         }
         </#if>
         </#list>

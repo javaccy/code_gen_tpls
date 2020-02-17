@@ -31,6 +31,8 @@
         <#list fields as f>
             <#if f.type.simpleName == 'Integer'>
             "${f.name}": ${1}<#if !f_has_next>,</#if>
+            <#elseif f.type.simpleName == "Boolean">
+            "${f.name}": false<#if !f_has_next>,</#if>
             <#elseif f.type.simpleName == "BigDecmail">
             "${f.name}": 0.01<#if !f_has_next>,</#if>
             <#else>

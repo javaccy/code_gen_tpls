@@ -15,7 +15,7 @@
 
 |参数名|必选|类型|说明|
 |:----    |:---|:----- |-----   |
-|${funs.camelcase(idName?lower_case)}|是|idType.simpleName|comment|
+|${funs.camelcase(idName?lower_case)}|是|${idType.simpleName}|${idColumn.comment}|
 **返回示例**
 
 ```
@@ -27,6 +27,8 @@
     <#list fields as f>
     <#if f.type.simpleName == 'Integer'>
     "${f.name}": ${1}<#if !f_has_next>,</#if>
+    <#elseif f.type.simpleName == "Boolean">
+    "${f.name}": false<#if !f_has_next>,</#if>
     <#elseif f.type.simpleName == "BigDecmail">
     "${f.name}": 0.01<#if !f_has_next>,</#if>
     <#else>

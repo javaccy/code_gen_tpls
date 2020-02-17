@@ -8,7 +8,7 @@
 
 |参数名|必选|类型|说明|
 |:----    |:---|:----- |-----   |
-|${funs.camelcase(idName?lower_case)}|是|idType.simpleName|comment|
+|${funs.camelcase(idName?lower_case)}|是|${idType.simpleName}|${idColumn.comment|
 <#list fields as f>
     <#if f.columnName?lower_case == "created_time" || f.columnName?lower_case == "updated_time" || f.columnName?lower_case == "created_by" || f.columnName?lower_case == "updated_by" || f.columnName?lower_case == "is_delete" || f.columnName?lower_case == "del_flag" || f.columnName?lower_case == "is_use">
         <#continue >
