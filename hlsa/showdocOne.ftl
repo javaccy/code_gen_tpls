@@ -41,7 +41,13 @@
 
 **返回参数说明**
 
-
+|参数名|类型|说明|
+|:-----  |:-----|-----                           |
+|firefighter_id |Long   | ID |
+|${funs.camelcase(idName?lower_case)} |${idType.simpleName}   | ID |
+<#list fields as f>
+    |${f.name} |${f.type.simpleName}   | ${f.comment} |
+</#list>
 
 **备注**
 

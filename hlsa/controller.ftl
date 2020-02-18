@@ -93,7 +93,7 @@ public class ${tpl.filePrefix}${name}Controller extends BaseController {
   @PostMapping("/add")
   <#if funs.prop("mode") == "api">
   @Override
-  public AjaxResult add(@Validated ${name}${funs.fileSuffix("DTOEdit")} param) {
+  public AjaxResult add(@RequestBody @Validated ${name}${funs.fileSuffix("DTOEdit")} param) {
   <#else>
   public AjaxResult add(${name} param ) {
   </#if>
@@ -114,7 +114,7 @@ public class ${tpl.filePrefix}${name}Controller extends BaseController {
   @PostMapping("/update")
   <#if funs.prop("mode") == "api">
   @Override
-  public AjaxResult update(@Validated ${name}${funs.fileSuffix("DTOEdit")} param) {
+  public AjaxResult update(@RequestBody @Validated ${name}${funs.fileSuffix("DTOEdit")} param) {
   <#else>
   public AjaxResult update(${name} param ) {
   </#if>
