@@ -12,13 +12,13 @@ import com.baomidou.mybatisplus.annotation.IdType;
 import com.fasterxml.jackson.annotation.JsonFormat;
 </#if>
 
+import com.hlsa.common.utils.other.BaseEntity;
 import io.swagger.annotations.ApiModel;
 import lombok.Data;
 import lombok.experimental.Accessors;
 import lombok.EqualsAndHashCode;
 import io.swagger.annotations.ApiModelProperty;
 
-import java.io.Serializable;
 <#list fields as f>
 <#if f.type.simpleName == "BigDecimal">
 import java.math.BigDecimal;
@@ -29,7 +29,7 @@ import java.util.Date;
 
 /**
  * <p>
- * ${tableComment!''}
+ * ${tableComment!''}实体类
  * </p>
  *
  * @author ${author}
@@ -37,9 +37,9 @@ import java.util.Date;
  */
 @Data
 @Accessors(chain = true)
-@EqualsAndHashCode
+@EqualsAndHashCode(callSuper = false)
 @ApiModel(value = "${name}对象", description = "${tableComment}")
-public class ${tpl.filePrefix}${name}${tpl.fileSuffix} implements Serializable {
+public class ${tpl.filePrefix}${name}${tpl.fileSuffix} extends BaseEntity {
 
   private static final long serialVersionUID = 1L;
   /**
@@ -52,6 +52,9 @@ public class ${tpl.filePrefix}${name}${tpl.fileSuffix} implements Serializable {
   </#if>
   private ${idType.simpleName} ${funs.camelcase(idName?lower_case)};
   <#list fields as f>
+     <#if f.columnName?lower_case == "create_time" || f.columnName?lower_case == "update_time" || f.columnName?lower_case == "create_by" || f.columnName?lower_case == "update_by">
+         <#continue >
+     </#if>
   <#if functions.properties('comment') == 'doc'>
   /**
    * ${f.comment!''}

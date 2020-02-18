@@ -63,6 +63,9 @@ public class ${tpl.filePrefix}${name}Controller extends BaseController {
     //条件构造器
     QueryWrapper<${name}> queryWrapper = new QueryWrapper<>();
     <#list fields as f>
+    <#if f.columnName?lower_case == "create_time" || f.columnName?lower_case == "update_time" || f.columnName?lower_case == "create_by" || f.columnName?lower_case == "update_by" || f.columnName?lower_case == "is_delete" || f.columnName?lower_case == "del_flag" || f.columnName?lower_case == "is_use">
+        <#continue >
+    </#if>
     <#if f.type.simpleName == 'BigDecimal' || f.type.simpleName == 'Long' || f.type.simpleName == 'Integer' || f.type.simpleName == "Boolean">
     //根据${f.comment}搜索
     if (param.get${f.name?cap_first}() != null) {
@@ -96,8 +99,8 @@ public class ${tpl.filePrefix}${name}Controller extends BaseController {
   </#if>
     ${name} o = new ${name}();
     BeanUtils.copyProperties(param, o);
-    //o.setCreatedBy("");
-    o.setCreatedTime(new Date());
+    //o.setcreateBy("");
+    o.setCreateTime(new Date());
     ${name?uncap_first}${funs.fileSuffix("service")}.save(o);
     return AjaxResult.success();
   }
@@ -118,8 +121,8 @@ public class ${tpl.filePrefix}${name}Controller extends BaseController {
     //根据id修改
     ${name} o = ${name?uncap_first}${funs.fileSuffix("service")}.getById(param.get${funs.camelcase(idName?lower_case)?cap_first}());
     BeanUtils.copyProperties(o, param);
-    //o.setCreatedBy();
-    o.setUpdatedTime(new Date());
+    //o.setUpdateBy();
+    o.setUpdateTime(new Date());
     ${name?uncap_first}${funs.fileSuffix("service")}.updateById(o);
     return AjaxResult.success();
   }

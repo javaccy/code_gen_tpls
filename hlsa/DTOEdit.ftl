@@ -29,7 +29,7 @@ import java.util.Date;
 
 /**
  * <p>
- * ${tableComment!''}
+ * ${tableComment!''} EditDTO
  * </p>
  *
  * @author ${author}
@@ -53,6 +53,9 @@ public class ${tpl.filePrefix}${name}${tpl.fileSuffix} implements Serializable {
   </#if>
   private ${idType.simpleName} ${funs.camelcase(idName?lower_case)};
   <#list fields as f>
+    <#if f.columnName?lower_case == "create_time" || f.columnName?lower_case == "update_time" || f.columnName?lower_case == "create_by" || f.columnName?lower_case == "update_by" || f.columnName?lower_case == "is_delete" || f.columnName?lower_case == "del_flag" || f.columnName?lower_case == "is_use">
+        <#continue >
+    </#if>
   <#if functions.properties('comment') == 'doc'>
   /**
    * ${f.comment!''}
