@@ -42,6 +42,7 @@ import java.util.Date;
 public class ${tpl.filePrefix}${name}${tpl.fileSuffix} extends BaseEntity {
 
   private static final long serialVersionUID = 1L;
+
   /**
    * 主键id
    */
