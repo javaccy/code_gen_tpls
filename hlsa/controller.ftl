@@ -35,7 +35,7 @@ import java.util.List;
  * @author ${author}
  * @since ${date}
  */
-@Controller
+@RestController
 <#if funs.prop("mode") == "api">
 @RequestMapping(value = ${name}${funs.fileSuffix("feign")}${r".BASE_URL"})
 public class ${tpl.filePrefix}${name}Controller extends BaseController implements ${name}Api {
@@ -115,7 +115,7 @@ public class ${tpl.filePrefix}${name}Controller extends BaseController {
   @PostMapping("/update")
   <#if funs.prop("mode") == "api">
   @Override
-  public AjaxResult update(@RequestBody @Validated ${name}${funs.fileSuffix("DTOEdit")} param) {
+  public AjaxResult update(@RequestBody @Validated(value = $${name}${funs.fileSuffix("DTOEdit")}.Edit.class) ${name}${funs.fileSuffix("DTOEdit")} param) {
   <#else>
   public AjaxResult update(${name} param ) {
   </#if>

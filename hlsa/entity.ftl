@@ -8,6 +8,7 @@ import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableField;
 </#if>
 import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableName;
 <#if functions.properties('jsonFormat')=='true'>
 import com.fasterxml.jackson.annotation.JsonFormat;
 </#if>
@@ -38,6 +39,7 @@ import java.util.Date;
 @Data
 @Accessors(chain = true)
 @EqualsAndHashCode(callSuper = false)
+@TableName(value = "${tableName}")
 @ApiModel(value = "${name}对象", description = "${tableComment}")
 public class ${tpl.filePrefix}${name}${tpl.fileSuffix} extends BaseEntity {
 

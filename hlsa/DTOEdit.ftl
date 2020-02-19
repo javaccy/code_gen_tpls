@@ -18,6 +18,7 @@ import lombok.experimental.Accessors;
 import lombok.EqualsAndHashCode;
 import io.swagger.annotations.ApiModelProperty;
 
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 <#list fields as f>
 <#if f.type.simpleName == "BigDecimal">
@@ -47,8 +48,10 @@ public class ${tpl.filePrefix}${name}${tpl.fileSuffix} implements Serializable {
    * 主键id
    */
   <#if idType.name == 'java.lang.String'>
+  @NotBlank(groups = Edit.class, message = "id不能为空")
   @TableId(value = "id", type = IdType.INPUT)
   <#else>
+  @NotNull(groups = Edit.class, message = "id不能为空")
   @TableId(value = "${idName}", type = IdType.AUTO)
   </#if>
   private ${idType.simpleName} ${funs.camelcase(idName?lower_case)};
@@ -136,5 +139,10 @@ public class ${tpl.filePrefix}${name}${tpl.fileSuffix} implements Serializable {
   }
   </#if>
 
+
+  public interface Add {}
+
+
+  public interface Edit {}
 
 }
