@@ -94,7 +94,7 @@ public class ${tpl.filePrefix}${name}Controller extends BaseController {
   @PostMapping("/add")
   <#if funs.prop("mode") == "api">
   @Override
-  public AjaxResult add(@RequestBody @Validated ${name}${funs.fileSuffix("DTOEdit")} param) {
+  public AjaxResult add(@RequestBody @Validated(value = $${name}${funs.fileSuffix("DTOEdit")}.Add.class) ${name}${funs.fileSuffix("DTOEdit")} param) {
   <#else>
   public AjaxResult add(${name} param ) {
   </#if>

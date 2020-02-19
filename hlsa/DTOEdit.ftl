@@ -48,10 +48,10 @@ public class ${tpl.filePrefix}${name}${tpl.fileSuffix} implements Serializable {
    * 主键id
    */
   <#if idType.name == 'java.lang.String'>
-  @NotBlank(groups = Edit.class, message = "id不能为空")
+  @NotBlank(groups = Edit.class, message = "${idComment}不能为空")
   @TableId(value = "id", type = IdType.INPUT)
   <#else>
-  @NotNull(groups = Edit.class, message = "id不能为空")
+  @NotNull(groups = Edit.class, message = "${idComment}不能为空")
   @TableId(value = "${idName}", type = IdType.AUTO)
   </#if>
   private ${idType.simpleName} ${funs.camelcase(idName?lower_case)};
