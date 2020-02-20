@@ -1,7 +1,7 @@
 package ${functions.packageName('controller')};
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.hlsa.common.utils.bean.BeanUtils;
+
 import com.hlsa.common.utils.other.AjaxResult;
 import com.hlsa.common.utils.other.StringUtils;
 import com.hlsa.common.utils.other.TableDataInfo;
@@ -12,6 +12,7 @@ import ${functions.packageName('DTOEdit')}.${name}${funs.fileSuffix("DTOEdit")};
 </#if>
 import ${functions.packageName('entity')}.${name};
 import ${functions.packageName('service')}.I${name}Service;
+import com.hlsa.common.utils.bean.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
