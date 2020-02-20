@@ -3,11 +3,6 @@ package ${functions.packageName('DTOEdit')};
 <#if functions.properties('jsonField')=='true'>
 import com.alibaba.fastjson.annotation.JSONField;
 </#if>
-import com.baomidou.mybatisplus.annotation.TableId;
-<#if functions.properties('tableField')=='true'>
-import com.baomidou.mybatisplus.annotation.TableField;
-</#if>
-import com.baomidou.mybatisplus.annotation.IdType;
 <#if functions.properties('jsonFormat')=='true'>
 import com.fasterxml.jackson.annotation.JsonFormat;
 </#if>
@@ -49,10 +44,8 @@ public class ${tpl.filePrefix}${name}${tpl.fileSuffix} implements Serializable {
    */
   <#if idType.name == 'java.lang.String'>
   @NotBlank(groups = Edit.class, message = "${idComment}不能为空")
-  @TableId(value = "id", type = IdType.INPUT)
   <#else>
   @NotNull(groups = Edit.class, message = "${idComment}不能为空")
-  @TableId(value = "${idName}", type = IdType.AUTO)
   </#if>
   private ${idType.simpleName} ${funs.camelcase(idName?lower_case)};
   <#list fields as f>
