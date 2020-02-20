@@ -122,7 +122,7 @@ public class ${tpl.filePrefix}${name}Controller extends BaseController {
   </#if>
     //根据id修改
     ${name} o = ${name?uncap_first}${funs.fileSuffix("service")}.getById(param.get${funs.camelcase(idName?lower_case)?cap_first}());
-    BeanUtils.copyProperties(o, param);
+    BeanUtils.copyProperties(param, o);
     //o.setUpdateBy();
     o.setUpdateTime(new Date());
     ${name?uncap_first}${funs.fileSuffix("service")}.updateById(o);
