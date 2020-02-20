@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import org.springframework.stereotype.RestController;
+import org.springframework.web.bind.annotation.RestController;
 import com.hlsa.common.utils.other.BaseController;
 
 
@@ -94,7 +94,7 @@ public class ${tpl.filePrefix}${name}Controller extends BaseController {
   @PostMapping("/add")
   <#if funs.prop("mode") == "api">
   @Override
-  public AjaxResult add(@RequestBody @Validated(value = $${name}${funs.fileSuffix("DTOEdit")}.Add.class) ${name}${funs.fileSuffix("DTOEdit")} param) {
+  public AjaxResult add(@RequestBody @Validated(value = ${name}${funs.fileSuffix("DTOEdit")}.Add.class) ${name}${funs.fileSuffix("DTOEdit")} param) {
   <#else>
   public AjaxResult add(${name} param ) {
   </#if>
@@ -115,7 +115,7 @@ public class ${tpl.filePrefix}${name}Controller extends BaseController {
   @PostMapping("/update")
   <#if funs.prop("mode") == "api">
   @Override
-  public AjaxResult update(@RequestBody @Validated(value = $${name}${funs.fileSuffix("DTOEdit")}.Edit.class) ${name}${funs.fileSuffix("DTOEdit")} param) {
+  public AjaxResult update(@RequestBody @Validated(value = ${name}${funs.fileSuffix("DTOEdit")}.Edit.class) ${name}${funs.fileSuffix("DTOEdit")} param) {
   <#else>
   public AjaxResult update(${name} param ) {
   </#if>

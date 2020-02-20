@@ -55,7 +55,7 @@ public class ${tpl.filePrefix}${name}${tpl.fileSuffix} extends BaseEntity {
   </#if>
   private ${idType.simpleName} ${funs.camelcase(idName?lower_case)};
   <#list fields as f>
-     <#if f.columnName?lower_case == "create_time" || f.columnName?lower_case == "update_time" || f.columnName?lower_case == "create_by" || f.columnName?lower_case == "update_by">
+     <#if f.columnName?lower_case == "create_time" || f.columnName?lower_case == "update_time" || f.columnName?lower_case == "create_by" || f.columnName?lower_case == "update_by" || f.columnName?lower_case == "remark">
          <#continue >
      </#if>
   <#if functions.properties('comment') == 'doc'>
