@@ -30,7 +30,7 @@ public interface ${name}Api {
    */
   @ApiOperation(value = "查询")
   @PostMapping("/list")
-  TableDataInfo list(@RequestBody ${name}${funs.fileSuffix("DTOList")} ${name?uncap_first}${funs.fileSuffix("DTOList")});
+  TableDataInfo list(${name}${funs.fileSuffix("DTOList")} ${name?uncap_first}${funs.fileSuffix("DTOList")});
 
   /**
    * 添加
