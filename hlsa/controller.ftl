@@ -101,7 +101,7 @@ public class ${tpl.filePrefix}${name}Controller extends BaseController {
   </#if>
     ${name} o = new ${name}();
     BeanUtils.copyProperties(param, o);
-    //o.setcreateBy("");
+    //o.setCreateBy("");
     o.setCreateTime(new Date());
     ${name?uncap_first}${funs.fileSuffix("service")}.save(o);
     return AjaxResult.success();
