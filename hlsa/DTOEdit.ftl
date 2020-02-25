@@ -132,10 +132,4 @@ public class ${tpl.filePrefix}${name}${tpl.fileSuffix} implements Serializable {
   }
   </#if>
 
-
-  public interface Add {}
-
-
-  public interface Edit {}
-
 }

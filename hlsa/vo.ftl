@@ -1,18 +1,12 @@
-package ${functions.packageName('entity')};
+package ${functions.packageName('vo')};
 
 <#if functions.properties('jsonField')=='true'>
 import com.alibaba.fastjson.annotation.JSONField;
 </#if>
-import com.baomidou.mybatisplus.annotation.TableId;
-<#if functions.properties('tableField')=='true'>
-import com.baomidou.mybatisplus.annotation.TableField;
-</#if>
-import com.baomidou.mybatisplus.annotation.IdType;
 <#if functions.properties('jsonFormat')=='true'>
 import com.fasterxml.jackson.annotation.JsonFormat;
 </#if>
 
-import com.hlsa.common.utils.other.BaseEntity;
 import io.swagger.annotations.ApiModel;
 import lombok.Data;
 import lombok.experimental.Accessors;
@@ -27,6 +21,8 @@ import java.math.BigDecimal;
 </#list>
 import java.util.Date;
 
+import java.io.Serializable;
+
 /**
  * <p>
  * ${tableComment!''}实体类
@@ -39,7 +35,7 @@ import java.util.Date;
 @Accessors(chain = true)
 @EqualsAndHashCode(callSuper = false)
 @ApiModel(value = "${name}对象", description = "${tableComment}")
-public class ${tpl.filePrefix}${name}${tpl.fileSuffix} extends BaseEntity {
+public class ${tpl.filePrefix}${name}${tpl.fileSuffix} implements Serializable {
 
   private static final long serialVersionUID = 1L;
 

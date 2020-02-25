@@ -1,7 +1,8 @@
 package ${functions.packageName('controller')};
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-
+import com.hlsa.common.model.dto.Add;
+import com.hlsa.common.model.dto.Edit;
 import com.hlsa.common.utils.other.AjaxResult;
 import com.hlsa.common.utils.other.StringUtils;
 import com.hlsa.common.utils.other.TableDataInfo;
@@ -95,7 +96,7 @@ public class ${tpl.filePrefix}${name}Controller extends BaseController {
   @PostMapping("/add")
   <#if funs.prop("mode") == "api">
   @Override
-  public AjaxResult add(@RequestBody @Validated(value = ${name}${funs.fileSuffix("DTOEdit")}.Add.class) ${name}${funs.fileSuffix("DTOEdit")} param) {
+  public AjaxResult add(@RequestBody @Validated(value = Add.class) ${name}${funs.fileSuffix("DTOEdit")} param) {
   <#else>
   public AjaxResult add(${name} param ) {
   </#if>
@@ -116,7 +117,7 @@ public class ${tpl.filePrefix}${name}Controller extends BaseController {
   @PostMapping("/update")
   <#if funs.prop("mode") == "api">
   @Override
-  public AjaxResult update(@RequestBody @Validated(value = ${name}${funs.fileSuffix("DTOEdit")}.Edit.class) ${name}${funs.fileSuffix("DTOEdit")} param) {
+  public AjaxResult update(@RequestBody @Validated(value = Edit.class) ${name}${funs.fileSuffix("DTOEdit")} param) {
   <#else>
   public AjaxResult update(${name} param ) {
   </#if>
