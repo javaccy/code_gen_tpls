@@ -5,7 +5,7 @@
 - ${comment}根据id删除接口
 
 **请求URL：**
-- ` http://xx.com/api/${(tableName?replace(tplGroup.tablePrefix,""))?replace("_","-")}/delete `
+- ` http://xx.com/api/${(tableName?replace(tplGroup.tablePrefix,""))?replace("_","-")}/del `
 
 **请求方式：**
 - POST
@@ -14,7 +14,7 @@
 
 |参数名|必选|类型|说明|
 |:----    |:---|:----- |-----   |
-|eqptNo |是  |string |装备编号   |
+|${funs.camelcase(idName?lower_case)}|是|${idType.simpleName}|${idColumn.comment}|
 
 
 **返回示例**
@@ -30,6 +30,13 @@
 ```
 
 **返回参数说明**
+
+|参数名|类型|说明|
+|:----|:-----|-----|
+|code |string |错误码|
+|msg  |string |失败/公共 消息|
+|data |object |{}|
+
 
 
 **备注**

@@ -16,12 +16,12 @@ import ${functions.packageName('service')}.I${name}Service;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import com.hlsa.common.utils.other.BaseController;
 
@@ -85,7 +85,7 @@ public class ${tpl.filePrefix}${name}Controller extends BaseController {
   </#if>
     ${name} o = new ${name}();
     BeanUtils.copyProperties(param, o);
-    //o.setCreateBy("");
+    o.setCreateBy("");
     o.setCreateTime(new Date());
     ${name?uncap_first}${funs.fileSuffix("service")}.save(o);
     return AjaxResult.success();
@@ -107,7 +107,7 @@ public class ${tpl.filePrefix}${name}Controller extends BaseController {
     //根据id修改
     ${name} o = ${name?uncap_first}${funs.fileSuffix("service")}.getById(param.get${funs.camelcase(idName?lower_case)?cap_first}());
     BeanUtils.copyProperties(param, o);
-    //o.setUpdateBy();
+    o.setUpdateBy("");
     o.setUpdateTime(new Date());
     ${name?uncap_first}${funs.fileSuffix("service")}.updateById(o);
     return AjaxResult.success();
@@ -116,21 +116,33 @@ public class ${tpl.filePrefix}${name}Controller extends BaseController {
   /**
    * 删除
    *
-   * @param id ${comment}ID
+   * @param ${funs.camelcase(idName?lower_case)} ${comment}ID
    * @return AjaxResult 修改结果
    */
-  @DeleteMapping("/del")
+  @PostMapping("/del")
   <#if funs.prop("mode") == "api">
   @Override
   </#if>
-  public AjaxResult del(${idType.simpleName} id) {
+  public AjaxResult del(${idType.simpleName} ${funs.camelcase(idName?lower_case)}) {
     <#if funs.containsColumn("is_delete")>
-    ${name?uncap_first}${funs.fileSuffix("service")}.updateById(new ${name}().set${funs.camelcase(idName?lower_case)?cap_first}(id).setIsDelete(Boolean.TRUE));
+    ${name?uncap_first}${funs.fileSuffix("service")}.updateById(new ${name}().set${funs.camelcase(idName?lower_case)?cap_first}(${funs.camelcase(idName?lower_case)}).setIsDelete(Boolean.TRUE));
     <#else>
-    ${name?uncap_first}${funs.fileSuffix("service")}.removeById(id);
+    ${name?uncap_first}${funs.fileSuffix("service")}.removeById(${funs.camelcase(idName?lower_case)});
     </#if>
     return AjaxResult.success();
   }
 
+
+ /**
+  * 根据id查询 ${tableComment}
+  * @param ${funs.camelcase(idName?lower_case)}
+  * @return
+  */
+  @GetMapping(value = "/one")
+  @Override
+  public AjaxResult one(@RequestParam(value = "${funs.camelcase(idName?lower_case)}") ${idType.simpleName} ${funs.camelcase(idName?lower_case)}) {
+    ${name} o = ${name?uncap_first}${funs.fileSuffix("service")}.getById(${funs.camelcase(idName?lower_case)});
+    return AjaxResult.success(o);
+  }
 
 }

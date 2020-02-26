@@ -1,9 +1,11 @@
 package ${functions.packageName('feign')};
 
+import com.hlsa.common.constant.ServiceId;
 import io.swagger.annotations.ApiOperation;
 
+import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -18,6 +20,7 @@ import ${functions.packageName('DTOEdit')}.${name}${funs.fileSuffix("DTOEdit")};
  * @author ${author}
  * @since ${date}
  */
+@FeignClient(value = ServiceId.API_DATA_INPUT, path = "//${(tableName?replace(tplGroup.tablePrefix,""))?replace("_","-")}")
 public interface ${name}Api {
 
   String BASE_URL = "/${(tableName?replace(tplGroup.tablePrefix,""))?replace("_","-")}";
@@ -53,13 +56,21 @@ public interface ${name}Api {
   AjaxResult update(@RequestBody @Validated ${name}${funs.fileSuffix("DTOEdit")} ${name?uncap_first}${funs.fileSuffix("DTOEdit")});
 
   /**
-   * 删除
-   *
-   * @param id ${idComment}
+   * 根据id删除 ${tableComment}
+   * @param ${funs.camelcase(idName?lower_case)} ${idComment}
    * @return AjaxResult 删除结果
    */
   @ApiOperation(value = "删除${comment}")
-  @DeleteMapping("/del")
-  AjaxResult del(@RequestParam("id") ${idType.simpleName} id);
+  @PostMapping("/del")
+  AjaxResult del(@RequestParam("${funs.camelcase(idName?lower_case)}") ${idType.simpleName} ${funs.camelcase(idName?lower_case)});
+
+
+ /**
+  * 根据id查询 ${tableComment}
+  * @param ${funs.camelcase(idName?lower_case)}
+  * @return 错误码和查询结果(.data)
+  */
+  @GetMapping(value = "/one")
+  AjaxResult one(@RequestParam(value = "${funs.camelcase(idName?lower_case)}") Long ${funs.camelcase(idName?lower_case)});
 
 }
