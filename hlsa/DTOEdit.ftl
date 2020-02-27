@@ -1,3 +1,4 @@
+<#import "../macro/macros.ftl" as m>
 package ${functions.packageName('DTOEdit')};
 
 <#if functions.properties('jsonField')=='true'>
@@ -7,6 +8,7 @@ import com.alibaba.fastjson.annotation.JSONField;
 import com.fasterxml.jackson.annotation.JsonFormat;
 </#if>
 
+import com.hlsa.common.model.dto.Del;
 import com.hlsa.common.model.dto.Edit;
 import io.swagger.annotations.ApiModel;
 import lombok.Data;
@@ -44,12 +46,12 @@ public class ${tpl.filePrefix}${name}${tpl.fileSuffix} implements Serializable {
    * 主键id
    */
   <#if idType.name == 'java.lang.String'>
-  @NotBlank(groups = Edit.class, message = "${idComment}不能为空")
+  @NotBlank(groups = {Del.class, Edit.class}, message = "${idComment}不能为空")
   <#else>
-  @NotNull(groups = Edit.class, message = "${idComment}不能为空")
+  @NotNull(groups = {Del.class, Edit.class}, message = "${idComment}不能为空")
   </#if>
   private ${idType.simpleName} ${funs.camelcase(idName?lower_case)};
-<#include '../fragment/fields.ftl'/>
+<@m.java_fields tpl.name/>
 
   /**
    * 默认构造方法

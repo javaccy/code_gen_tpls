@@ -1,3 +1,4 @@
+<#import "../macro/macros.ftl" as m>
 package ${functions.packageName('entity')};
 
 <#if functions.properties('jsonField')=='true'>
@@ -54,7 +55,7 @@ public class ${tpl.filePrefix}${name}${tpl.fileSuffix} extends BaseEntity {
   @TableId(value = "${idName}", type = IdType.AUTO)
   </#if>
   private ${idType.simpleName} ${funs.camelcase(idName?lower_case)};
-<#include '../fragment/fields.ftl'/>
+<@m.java_fields tpl.name/>
 
   /**
    * 默认构造方法

@@ -1,5 +1,15 @@
+<#assign currentTplName=''/>
+<#if tplName??>
+    <#assign currentTplName=tplName/>
+<#else>
+    <#assign currentTplName=""/>
+</#if>
 <#list fields as f>
-  <#if f.columnName?lower_case == "create_time" || f.columnName?lower_case == "update_time" || f.columnName?lower_case == "create_by" || f.columnName?lower_case == "update_by" || f.columnName?lower_case == "remark">
+  <#if (currentTplName == "entity") && (f.columnName == "create_time" || f.columnName == "update_time" || f.columnName == "create_by" || f.columnName == "update_by" || f.columnName == "remark")>
+      <#continue >
+  <#elseif (currentTplName == "DTOEdit") && (f.columnName == "create_time" || f.columnName == "update_time" || f.columnName == "create_by" || f.columnName == "update_by" || f.columnName == "is_delete")>
+      <#continue >
+  <#elseif (currentTplName == "ListEdit") && (f.columnName == "create_time" || f.columnName == "update_time")>
       <#continue >
   </#if>
   <#if functions.properties('comment') == 'doc'>

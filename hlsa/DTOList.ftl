@@ -1,3 +1,4 @@
+<#import "../macro/macros.ftl" as m>
 package ${functions.packageName('DTOList')};
 
 <#if functions.properties('jsonField')=='true'>

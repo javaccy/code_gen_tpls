@@ -10,3 +10,6 @@
 <#macro mybatis_maps_xml mybatisFindName>
     <#include "../fragment/mybatis_maps_xml.ftl"/>
 </#macro>
+<#macro java_fields tplName>
+    <#include "../fragment/fields.ftl"/>
+</#macro>

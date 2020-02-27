@@ -9,10 +9,22 @@
     }
     <#elseif f.type.simpleName == 'Date'>
         <#continue/>
-    <#else>
+    <#elseif f.type.simpleName == 'String'>
     //根据${f.comment}搜索
     if (StringUtils.isNotEmpty(param.get${f.name?cap_first}())) {
+        <#if f.columnLength < 200>
       queryWrapper.eq("${f.columnName?lower_case}", param.get${f.name?cap_first}());
+        <#else>
+      queryWrapper.like("${f.columnName?lower_case}", param.get${f.name?cap_first}());
+        </#if>
     }
+    <#else>
+
     </#if>
 </#list>
+<#if funs.containsColumn("is_delete")>
+    queryWrapper.eq("is_delete", Boolean.FALSE);
+<#elseif funs.containsColumn("del_flag")>
+    queryWrapper.eq("is_delete", Boolean.FALSE);
+<#else>
+</#if>

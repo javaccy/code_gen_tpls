@@ -1,6 +1,7 @@
 package ${functions.packageName('controller')};
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.hlsa.common.model.dto.Del;
 import com.hlsa.common.model.dto.Add;
 import com.hlsa.common.model.dto.Edit;
 import com.hlsa.common.utils.other.AjaxResult;
@@ -113,6 +114,26 @@ public class ${tpl.filePrefix}${name}Controller extends BaseController {
     return AjaxResult.success();
   }
 
+  <#if funs.prop("delMode") == "requestBody">
+  /**
+   * 删除
+   *
+   * @param param param.id ${comment}ID
+   * @return AjaxResult 修改结果
+   */
+   @PostMapping("/del")
+   <#if funs.prop("mode") == "api">
+   @Override
+   </#if>
+   public AjaxResult del(@RequestBody @Validated(value = Del.class) ${name}${funs.fileSuffix("DTOEdit")} param) {
+   <#if funs.containsColumn("is_delete")>
+     ${name?uncap_first}${funs.fileSuffix("service")}.updateById(new ${name}().set${funs.camelcase(idName?lower_case)?cap_first}(param.get${funs.camelcase(idName?lower_case)?cap_first}()).setIsDelete(Boolean.TRUE));
+   <#else>
+     ${name?uncap_first}${funs.fileSuffix("service")}.removeById(param.get${funs.camelcase(idName?lower_case)?cap_first}());
+   </#if>
+     return AjaxResult.success();
+   }
+  <#else>
   /**
    * 删除
    *
@@ -131,6 +152,7 @@ public class ${tpl.filePrefix}${name}Controller extends BaseController {
     </#if>
     return AjaxResult.success();
   }
+  </#if>
 
 
  /**
