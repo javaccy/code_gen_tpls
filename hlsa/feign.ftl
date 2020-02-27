@@ -20,7 +20,7 @@ import ${functions.packageName('DTOEdit')}.${name}${funs.fileSuffix("DTOEdit")};
  * @author ${author}
  * @since ${date}
  */
-@FeignClient(value = ServiceId.API_DATA_INPUT, path = "//${(tableName?replace(tplGroup.tablePrefix,""))?replace("_","-")}")
+@FeignClient(value = ServiceId.API_DATA_INPUT, path = "/${(tableName?replace(tplGroup.tablePrefix,""))?replace("_","-")}")
 public interface ${name}Api {
 
   String BASE_URL = "/${(tableName?replace(tplGroup.tablePrefix,""))?replace("_","-")}";
