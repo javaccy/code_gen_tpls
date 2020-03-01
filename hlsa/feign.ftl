@@ -21,7 +21,7 @@ import ${functions.packageName('DTOEdit')}.${name}${funs.fileSuffix("DTOEdit")};
 
 /**
  * @author ${author}
- * @since ${date}
+ * @since ${tpl.date}
  */
 @FeignClient(value = "${name}Api", path = "/${(tableName?replace(tplGroup.tablePrefix,""))?replace("_","-")}")
 public interface ${name}Api {

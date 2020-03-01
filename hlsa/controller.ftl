@@ -36,7 +36,7 @@ import java.util.List;
  * </p>
  *
  * @author ${author}
- * @since ${date}
+ * @since ${tpl.date}
  */
 @RestController
 <#if funs.prop("mode") == "api">

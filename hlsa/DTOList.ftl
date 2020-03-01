@@ -29,7 +29,7 @@ import java.util.Date;
  * </p>
  *
  * @author ${author}
- * @since ${date}
+ * @since ${tpl.date}
  */
 @Data
 @Accessors(chain = true)

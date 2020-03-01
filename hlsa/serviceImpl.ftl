@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
  * </p>
  *
  * @author ${author}
- * @since ${date}
+ * @since ${tpl.date}
  */
 @Service
 public class ${name}ServiceImpl extends ServiceImpl<${name}Mapper, ${name}> implements I${name}Service {
