@@ -55,7 +55,7 @@ public interface ${name}Api {
    * @return AjaxResult 修改结果
    */
   @ApiOperation(value = "更新${comment}")
-  @PutMapping("/update")
+  @PutMapping("/edit")
   AjaxResult update(@RequestBody @Validated(value = Edit.class) ${name}${funs.fileSuffix("DTOEdit")} ${name?uncap_first}${funs.fileSuffix("DTOEdit")});
 
   <#if funs.prop("delMode") == "requestBody">

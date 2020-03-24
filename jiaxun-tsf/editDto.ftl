@@ -1,5 +1,5 @@
 <#import "../macro/macros.ftl" as m>
-package ${functions.packageName('DTOEdit')};
+package ${functions.packageName('editDto')};
 
 <#if functions.properties('jsonField')=='true'>
 import com.alibaba.fastjson.annotation.JSONField;

@@ -5,7 +5,7 @@
     }
     </#if>
     <#if funs.prop("setter") == 'true'>
-    public ${tpl.filePrefix}${name}${tpl.fileSuffix} set${f.name?cap_first}( ${f.type.simpleName} ${f.name}) {
+    public ${tpl.filePrefix}${name}${tpl.fileSuffixPrefix} set${f.name?cap_first}( ${f.type.simpleName} ${f.name}) {
       this.${f.name} = ${f.name};return this;
     }
     </#if>

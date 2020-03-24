@@ -9,8 +9,8 @@ import com.hlsa.common.utils.other.StringUtils;
 import com.hlsa.common.utils.other.TableDataInfo;
 <#if funs.prop("mode") == 'api'>
 import ${functions.packageName('feign')}.${name}${funs.fileSuffix("feign")};
-import ${functions.packageName('DTOList')}.${name}${funs.fileSuffix("DTOList")};
-import ${functions.packageName('DTOEdit')}.${name}${funs.fileSuffix("DTOEdit")};
+import ${functions.packageName('queryDto')}.${name}${funs.fileSuffix("queryDto")};
+import ${functions.packageName('editDto')}.${name}${funs.fileSuffix("editDto")};
 </#if>
 import ${functions.packageName('entity')}.${name};
 import ${functions.packageName('service')}.I${name}Service;
@@ -59,7 +59,7 @@ public class ${tpl.filePrefix}${name}Controller extends BaseController {
   @GetMapping("/list")
   <#if funs.prop("mode") == "api">
   @Override
-  public TableDataInfo list(${name}${funs.fileSuffix("DTOList")} param) {
+  public TableDataInfo list(${name}${funs.fileSuffix("queryDto")} param) {
   <#else>
   public TableDataInfo list(${name} param) {
   </#if>
@@ -80,7 +80,7 @@ public class ${tpl.filePrefix}${name}Controller extends BaseController {
   @PostMapping("/add")
   <#if funs.prop("mode") == "api">
   @Override
-  public AjaxResult add(@RequestBody @Validated(value = Add.class) ${name}${funs.fileSuffix("DTOEdit")} param) {
+  public AjaxResult add(@RequestBody @Validated(value = Add.class) ${name}${funs.fileSuffix("editDto")} param) {
   <#else>
   public AjaxResult add(${name} param ) {
   </#if>
@@ -101,7 +101,7 @@ public class ${tpl.filePrefix}${name}Controller extends BaseController {
   @PostMapping("/edit")
   <#if funs.prop("mode") == "api">
   @Override
-  public AjaxResult update(@RequestBody @Validated(value = Edit.class) ${name}${funs.fileSuffix("DTOEdit")} param) {
+  public AjaxResult update(@RequestBody @Validated(value = Edit.class) ${name}${funs.fileSuffix("editDto")} param) {
   <#else>
   public AjaxResult update(${name} param ) {
   </#if>
@@ -125,7 +125,7 @@ public class ${tpl.filePrefix}${name}Controller extends BaseController {
    <#if funs.prop("mode") == "api">
    @Override
    </#if>
-   public AjaxResult del(@RequestBody @Validated(value = Del.class) ${name}${funs.fileSuffix("DTOEdit")} param) {
+   public AjaxResult del(@RequestBody @Validated(value = Del.class) ${name}${funs.fileSuffix("editDto")} param) {
    <#if funs.containsColumn("is_delete")>
      ${name?uncap_first}${funs.fileSuffix("service")}.updateById(new ${name}().set${funs.camelcase(idName?lower_case)?cap_first}(param.get${funs.camelcase(idName?lower_case)?cap_first}()).setIsDelete(Boolean.TRUE));
    <#else>

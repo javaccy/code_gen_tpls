@@ -98,7 +98,7 @@ public class ${tpl.filePrefix}${name}Controller extends BaseController {
    * @param param ${comment}信息
    * @return AjaxResult 修改结果
    */
-  @PostMapping("/update")
+  @PostMapping("/edit")
   <#if funs.prop("mode") == "api">
   @Override
   public AjaxResult update(@RequestBody @Validated(value = Edit.class) ${name}${funs.fileSuffix("DTOEdit")} param) {

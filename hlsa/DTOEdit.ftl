@@ -38,7 +38,7 @@ import java.util.Date;
 @Accessors(chain = true)
 @EqualsAndHashCode
 @ApiModel(value = "${name}添加和修改对象", description = "${tableComment}")
-public class ${tpl.filePrefix}${name}${tpl.fileSuffix} implements Serializable {
+public class ${tpl.filePrefix}${name}${tpl.fileSuffixPrefix} implements Serializable {
 
   private static final long serialVersionUID = 1L;
 
@@ -56,7 +56,7 @@ public class ${tpl.filePrefix}${name}${tpl.fileSuffix} implements Serializable {
   /**
    * 默认构造方法
    */
-  public ${tpl.filePrefix}${name}${tpl.fileSuffix}() {
+  public ${tpl.filePrefix}${name}${tpl.fileSuffixPrefix}() {
   }
   <#if funs.prop("getter") == 'true'>
   public ${idType.simpleName} get${idName?cap_first}() {
@@ -64,7 +64,7 @@ public class ${tpl.filePrefix}${name}${tpl.fileSuffix} implements Serializable {
   }
   </#if>
   <#if funs.prop("setter") == 'true'>
-  public ${tpl.filePrefix}${name}${tpl.fileSuffix} set${idName?cap_first}(${idType.simpleName} ${idName?lower_case}){
+  public ${tpl.filePrefix}${name}${tpl.fileSuffixPrefix} set${idName?cap_first}(${idType.simpleName} ${idName?lower_case}){
     this.${idName?lower_case} = ${idName?lower_case};return this;
   }
   </#if>
@@ -76,7 +76,7 @@ public class ${tpl.filePrefix}${name}${tpl.fileSuffix} implements Serializable {
   }
   </#if>
   <#if funs.prop("setter") == 'true'>
-  public ${tpl.filePrefix}${name}${tpl.fileSuffix} set${f.name?cap_first}( ${f.type.simpleName} ${f.name}) {
+  public ${tpl.filePrefix}${name}${tpl.fileSuffixPrefix} set${f.name?cap_first}( ${f.type.simpleName} ${f.name}) {
       this.${f.name} = ${f.name};return this;
   }
   </#if>
@@ -91,7 +91,7 @@ public class ${tpl.filePrefix}${name}${tpl.fileSuffix} implements Serializable {
   <#if funs.prop("toString") == 'true'>
   @Override
   public String toString() {
-    return "${tpl.filePrefix}${name}${tpl.fileSuffix}{" +
+    return "${tpl.filePrefix}${name}${tpl.fileSuffixPrefix}{" +
     "${idName?lower_case}=" + ${idName?lower_case} +
     <#list fields as f>
         ", ${f.name}=" + ${f.name} +

@@ -16,8 +16,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.hlsa.common.utils.other.AjaxResult;
 import com.hlsa.common.utils.other.TableDataInfo;
-import ${functions.packageName('DTOList')}.${name}${funs.fileSuffix("DTOList")};
-import ${functions.packageName('DTOEdit')}.${name}${funs.fileSuffix("DTOEdit")};
+import ${functions.packageName('queryDto')}.${name}${funs.fileSuffix("queryDto")};
+import ${functions.packageName('editDto')}.${name}${funs.fileSuffix("editDto")};
 
 /**
  * @author ${author}
@@ -31,32 +31,32 @@ public interface ${name}Api {
   /**
    * 查询列表
    *
-   * @param ${name?uncap_first}${funs.fileSuffix("DTOList")} 列表
+   * @param ${name?uncap_first}${funs.fileSuffix("queryDto")} 列表
    * @return TableDataInfo 修改结果
    */
   @ApiOperation(value = "查询")
   @PostMapping("/list")
-  TableDataInfo list(${name}${funs.fileSuffix("DTOList")} ${name?uncap_first}${funs.fileSuffix("DTOList")});
+  TableDataInfo list(${name}${funs.fileSuffix("queryDto")} ${name?uncap_first}${funs.fileSuffix("queryDto")});
 
   /**
    * 添加
    *
-   * @param ${name?uncap_first}${funs.fileSuffix("DTOEdit")} 参数
+   * @param ${name?uncap_first}${funs.fileSuffix("editDto")} 参数
    * @return AjaxResult 修改结果
    */
   @ApiOperation(value = "新增")
   @PostMapping("/add")
-  AjaxResult add(@RequestBody @Validated(value = Add.class) ${name}${funs.fileSuffix("DTOEdit")} ${name?uncap_first}${funs.fileSuffix("DTOEdit")});
+  AjaxResult add(@RequestBody @Validated(value = Add.class) ${name}${funs.fileSuffix("editDto")} ${name?uncap_first}${funs.fileSuffix("editDto")});
 
   /**
    * 修改
    *
-   * @param ${name?uncap_first}${funs.fileSuffix("DTOEdit")} 参数
+   * @param ${name?uncap_first}${funs.fileSuffix("editDto")} 参数
    * @return AjaxResult 修改结果
    */
   @ApiOperation(value = "更新${comment}")
   @PutMapping("/edit")
-  AjaxResult update(@RequestBody @Validated(value = Edit.class) ${name}${funs.fileSuffix("DTOEdit")} ${name?uncap_first}${funs.fileSuffix("DTOEdit")});
+  AjaxResult update(@RequestBody @Validated(value = Edit.class) ${name}${funs.fileSuffix("editDto")} ${name?uncap_first}${funs.fileSuffix("editDto")});
 
   <#if funs.prop("delMode") == "requestBody">
   /**
@@ -66,7 +66,7 @@ public interface ${name}Api {
    */
    @ApiOperation(value = "删除${comment}")
    @PostMapping("/del")
-   AjaxResult del(@RequestBody @Validated(value = Del.class) ${name}${funs.fileSuffix("DTOEdit")} param);
+   AjaxResult del(@RequestBody @Validated(value = Del.class) ${name}${funs.fileSuffix("editDto")} param);
   <#else>
   /**
    * 根据id删除 ${tableComment}

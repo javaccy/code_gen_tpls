@@ -1,7 +1,8 @@
 package ${functions.packageName('mapper')};
 
+import com.jiaxun.tsf.common.provider.base.BaseMapper;
 import ${functions.packageName('entity')}.${name};
-import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+<#--import com.baomidou.mybatisplus.core.mapper.BaseMapper;-->
 
 /**
  * <p>
