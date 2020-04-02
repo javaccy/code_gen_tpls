@@ -3,8 +3,7 @@ package ${functions.packageName('serviceImpl')};
 import ${functions.packageName('entity')}.${name};
 import ${functions.packageName('mapper')}.${name}Mapper;
 import ${functions.packageName('service')}.I${name}Service;
-import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import org.springframework.stereotype.Service;
+import com.jiaxun.tsf.common.provider.base.ServiceImpl;
 
 /**
  * <p>
@@ -14,7 +13,6 @@ import org.springframework.stereotype.Service;
  * @author ${author}
  * @since ${tpl.date}
  */
-@Service
 public class ${name}ServiceImpl extends ServiceImpl<${name}Mapper, ${name}> implements I${name}Service {
 
 }

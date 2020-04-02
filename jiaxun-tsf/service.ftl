@@ -2,6 +2,7 @@ package ${functions.packageName('service')};
 
 import ${functions.packageName('entity')}.${name};
 import com.baomidou.mybatisplus.extension.service.IService;
+import org.springframework.stereotype.Service;
 
 /**
  * <p>
@@ -11,6 +12,7 @@ import com.baomidou.mybatisplus.extension.service.IService;
  * @author ${author}
  * @since ${tpl.date}
  */
+@Service
 public interface I${name}Service extends IService<${name}> {
 
 }

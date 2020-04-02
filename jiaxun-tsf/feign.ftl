@@ -1,9 +1,10 @@
 package ${functions.packageName('feign')};
 
-import com.hlsa.common.constant.ServiceId;
-import com.hlsa.common.model.dto.Del;
-import com.hlsa.common.model.dto.Add;
-import com.hlsa.common.model.dto.Edit;
+import com.jiaxun.tsf.common.model.vo.DataVO;
+import com.jiaxun.tsf.common.model.vo.ListVO;
+import com.jiaxun.tsf.common.model.vo.BaseVO;
+import com.jiaxun.tsf.common.tools.Add;
+import com.jiaxun.tsf.common.tools.Edit;
 import io.swagger.annotations.ApiOperation;
 
 import org.springframework.cloud.openfeign.FeignClient;
@@ -14,10 +15,9 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.hlsa.common.utils.other.AjaxResult;
-import com.hlsa.common.utils.other.TableDataInfo;
-import ${functions.packageName('queryDto')}.${name}${funs.fileSuffix("queryDto")};
-import ${functions.packageName('editDto')}.${name}${funs.fileSuffix("editDto")};
+import ${functions.packageName('vo')}.${name}${funs.fileSuffixPrefix("vo")};
+import ${functions.packageName('queryDto')}.${name}${funs.fileSuffixPrefix("queryDto")};
+import ${functions.packageName('editDto')}.${name}${funs.fileSuffixPrefix("editDto")};
 
 /**
  * @author ${author}
@@ -26,37 +26,35 @@ import ${functions.packageName('editDto')}.${name}${funs.fileSuffix("editDto")};
 @FeignClient(value = "${name}Api", path = "/${(tableName?replace(tplGroup.tablePrefix,""))?replace("_","-")}")
 public interface ${name}Api {
 
-  String BASE_URL = "/${(tableName?replace(tplGroup.tablePrefix,""))?replace("_","-")}";
-
   /**
    * 查询列表
    *
-   * @param ${name?uncap_first}${funs.fileSuffix("queryDto")} 列表
+   * @param ${name?uncap_first}${funs.fileSuffixPrefix("queryDto")} 列表
    * @return TableDataInfo 修改结果
    */
   @ApiOperation(value = "查询")
   @PostMapping("/list")
-  TableDataInfo list(${name}${funs.fileSuffix("queryDto")} ${name?uncap_first}${funs.fileSuffix("queryDto")});
+  ListVO<${name}${funs.fileSuffixPrefix("vo")}> list(${name}${funs.fileSuffixPrefix("queryDto")} ${name?uncap_first}${funs.fileSuffixPrefix("queryDto")}) throws Exception;
 
   /**
    * 添加
    *
-   * @param ${name?uncap_first}${funs.fileSuffix("editDto")} 参数
+   * @param ${name?uncap_first}${funs.fileSuffixPrefix("editDto")} 参数
    * @return AjaxResult 修改结果
    */
   @ApiOperation(value = "新增")
   @PostMapping("/add")
-  AjaxResult add(@RequestBody @Validated(value = Add.class) ${name}${funs.fileSuffix("editDto")} ${name?uncap_first}${funs.fileSuffix("editDto")});
+  BaseVO add(@RequestBody @Validated(value = Add.class) ${name}${funs.fileSuffixPrefix("editDto")} ${name?uncap_first}${funs.fileSuffixPrefix("editDto")});
 
   /**
    * 修改
    *
-   * @param ${name?uncap_first}${funs.fileSuffix("editDto")} 参数
+   * @param ${name?uncap_first}${funs.fileSuffixPrefix("editDto")} 参数
    * @return AjaxResult 修改结果
    */
-  @ApiOperation(value = "更新${comment}")
+  @ApiOperation(value = "更新${comment!""}")
   @PutMapping("/edit")
-  AjaxResult update(@RequestBody @Validated(value = Edit.class) ${name}${funs.fileSuffix("editDto")} ${name?uncap_first}${funs.fileSuffix("editDto")});
+  BaseVO update(@RequestBody @Validated(value = Edit.class) ${name}${funs.fileSuffixPrefix("editDto")} ${name?uncap_first}${funs.fileSuffixPrefix("editDto")});
 
   <#if funs.prop("delMode") == "requestBody">
   /**
@@ -66,16 +64,16 @@ public interface ${name}Api {
    */
    @ApiOperation(value = "删除${comment}")
    @PostMapping("/del")
-   AjaxResult del(@RequestBody @Validated(value = Del.class) ${name}${funs.fileSuffix("editDto")} param);
+   BaseVO del(@RequestBody @Validated(value = Del.class) ${name}${funs.fileSuffixPrefix("editDto")} param);
   <#else>
   /**
    * 根据id删除 ${tableComment}
-   * @param ${funs.camelcase(idName?lower_case)} ${idComment}
+   * @param ${funs.camelcase(idName?lower_case)} ${idComment!''}
    * @return AjaxResult 删除结果
    */
-  @ApiOperation(value = "删除${comment}")
+  @ApiOperation(value = "删除${comment!''}")
   @PostMapping("/del")
-  AjaxResult del(@RequestParam("${funs.camelcase(idName?lower_case)}") ${idType.simpleName} ${funs.camelcase(idName?lower_case)});
+  BaseVO del(@RequestParam("${funs.camelcase(idName?lower_case)}") ${idType.simpleName} ${funs.camelcase(idName?lower_case)});
   </#if>
 
 
@@ -85,6 +83,6 @@ public interface ${name}Api {
   * @return 错误码和查询结果(.data)
   */
   @GetMapping(value = "/one")
-  AjaxResult one(@RequestParam(value = "${funs.camelcase(idName?lower_case)}") Long ${funs.camelcase(idName?lower_case)});
+  DataVO<${name}${funs.fileSuffixPrefix("vo")}> one(@RequestParam(value = "${funs.camelcase(idName?lower_case)}") Long ${funs.camelcase(idName?lower_case)}) throws Exception;
 
 }

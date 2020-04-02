@@ -8,8 +8,8 @@ import com.alibaba.fastjson.annotation.JSONField;
 import com.fasterxml.jackson.annotation.JsonFormat;
 </#if>
 
-import com.hlsa.common.model.dto.Del;
-import com.hlsa.common.model.dto.Edit;
+import com.jiaxun.tsf.common.tools.Del;
+import com.jiaxun.tsf.common.tools.Edit;
 import io.swagger.annotations.ApiModel;
 import lombok.Data;
 import lombok.experimental.Accessors;
@@ -46,9 +46,9 @@ public class ${tpl.filePrefix}${name}${tpl.fileSuffixPrefix} implements Serializ
    * 主键id
    */
   <#if idType.name == 'java.lang.String'>
-  @NotBlank(groups = {Del.class, Edit.class}, message = "${idComment}不能为空")
+  @NotBlank(groups = {Del.class, Edit.class}, message = "${idComment!''}不能为空")
   <#else>
-  @NotNull(groups = {Del.class, Edit.class}, message = "${idComment}不能为空")
+  @NotNull(groups = {Del.class, Edit.class}, message = "${idComment!''}不能为空")
   </#if>
   private ${idType.simpleName} ${funs.camelcase(idName?lower_case)};
 <@m.java_fields tpl.name/>

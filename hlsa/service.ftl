@@ -1,7 +1,7 @@
 package ${functions.packageName('service')};
 
+import com.jiaxun.tsf.common.provider.base.IService;
 import ${functions.packageName('entity')}.${name};
-import com.baomidou.mybatisplus.extension.service.IService;
 
 /**
  * <p>
