@@ -13,34 +13,41 @@
       <#continue >
   </#if>
   <#if functions.properties('comment') == 'doc'>
-  /**
-   * ${f.comment!''}
-   */
+${funs.prop("tabLine")?replace("|","")}/**
+${funs.prop("tabLine")?replace("|","")} * ${f.comment!''}
+${funs.prop("tabLine")?replace("|","")} */
   <#elseif functions.properties('comment') == 'swagger'>
-  @ApiModelProperty(value = "${f.comment}")
+${funs.prop("tabLine")?replace("|","")}@ApiModelProperty(value = "${f.comment}")
   <#else>
-  //${f.comment}
+${funs.prop("tabLine")?replace("|","")}//${f.comment}
   </#if>
   <#if functions.properties('jsonField')=='true'>
-      <#if f.columnName?contains("_") && f.type.name = 'java.util.Date'>
-  @JSONField(name = "${f.columnName}", format = "yyyy-MM-dd HH:mm:ss")
+      <#if f.columnName?contains("_") && f.type.name == 'java.util.Date'>
+${funs.prop("tabLine")?replace("|","")}@JSONField(name = "${f.columnName}", format = "yyyy-MM-dd HH:mm:ss")
       </#if>
       <#if f.columnName?contains("_") && f.type.name != 'java.util.Date'>
-  @JSONField(name = "${f.columnName}")
+${funs.prop("tabLine")?replace("|","")}@JSONField(name = "${f.columnName}")
       </#if>
   </#if>
   <#if functions.properties('jsonFormat')=='true'>
-      <#if f.type.name = 'java.util.Date'>
-  @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss",timezone="GMT+8")
+      <#if f.type.name == 'java.util.Date' >
+${funs.prop("tabLine")?replace("|","")}@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss",timezone="GMT+8")
+      <#elseif f.type.name == 'java.time.LocalDate'>
+${funs.prop("tabLine")?replace("|","")}@JsonFormat(pattern = "yyyy-MM-dd",timezone="GMT+8")
+      <#elseif f.type.name == 'java.time.LocalDateTime'>
+${funs.prop("tabLine")?replace("|","")}@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss",timezone="GMT+8")
+      <#elseif f.type.name == 'java.time.LocalTime'>
+${funs.prop("tabLine")?replace("|","")}@JsonFormat(pattern = "HH:mm:ss",timezone="GMT+8")
       </#if>
   </#if>
   <#if functions.properties('jsonProperty')=='true'>
       <#if f.columnName?contains("_")>
-  @JsonProperty(value = "${f.name}")
+${funs.prop("tabLine")?replace("|","")}@JsonProperty(value = "${f.name}")
       </#if>
   </#if>
   <#if funs.prop('tableField')=='true' && f.columnName?contains("_")>
-  @TableField("${f.columnName}")
+${funs.prop("tabLine")?replace("|","")}@TableField("${f.columnName}")
   </#if>
-  private ${f.type.simpleName} ${f.name};
+${funs.prop("tabLine")?replace("|","")}private ${funs.prop("type.mapping."+f.type.simpleName,f.type.simpleName)} ${f.name};
+
 </#list>
