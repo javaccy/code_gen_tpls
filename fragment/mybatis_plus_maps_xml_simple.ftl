@@ -37,28 +37,11 @@
     </resultMap>
     <select id="${mybatisSelectPrefix}${xxxx}${mybatisSelectSuffix}" resultMap="${mybatisSelectPrefix}${xxxx}${mybatisSelectSuffix}ResultMap">
         select
-        *
-        from (
-        select
-        <choose>
-            <when test="${mybatisParamsName}.columns != null">
-                <choose>
-                    <when test="${mybatisParamsName}.columns == ''">
-                        count(1) count
-                    </when>
-                    <otherwise>
-                        ${r"${"}${mybatisParamsName}${".columns}"}
-                    </otherwise>
-                </choose>
-            </when>
-            <otherwise>
-                <#if idType??>
-                ${idName}
-                </#if>
-                ,
-                <include refid="${tableName}${xxxx???string(''+xxxx,'')}_alias_columns"/>
-            </otherwise>
-        </choose>
+            <#if idType??>
+            ${tableAlias}.${idName}
+            </#if>
+            ,
+            <include refid="${tableName}${xxxx???string(''+xxxx,'')}_alias_columns"/>
         from ${tableName} ${tableAlias} where true
         <#if idType.name == 'java.lang.String'>
         <if test="${mybatisParamsName}.${idName} != null and ${mybatisParamsName}.${idName} != ''">
@@ -74,24 +57,8 @@
             <when test="${mybatisParamsName}.orderBy != null and ${mybatisParamsName}.orderBy != ''">
                 order by ${r"${"}${mybatisParamsName}${".orderBy}"}
             </when>
-            <when test="${mybatisParamsName}.page != null">
+            <otherwise>
                 order by ${tableAlias}.create_time desc
-                <include refid="com.aiinp.cash.provider.base.mapper.AAMapper.params_limit"/>
-            </when>
-            <otherwise>
-                <!-- 没有排序 -->
-            </otherwise>
-        </choose>
-        ) as ${tableAlias}
-        <choose>
-            <when test="${mybatisParamsName}.orderBy != null and ${mybatisParamsName}.orderBy != ''">
-                order by ${r"${"}${mybatisParamsName}${".orderBy}"}
-            </when>
-            <when test="${mybatisParamsName}.page != null">
-                order by ${tableAlias}.createTime desc
-            </when>
-            <otherwise>
-                <!-- 没有排序 -->
             </otherwise>
         </choose>
     </select>

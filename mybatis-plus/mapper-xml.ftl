@@ -27,7 +27,7 @@
         <#list tplGroup.properties as p>
             <#if p.key?starts_with('findName')>
                 <#if p.value != "false">
-                    <@m.mybatis_maps_xml name "select" "List" "p"/>
+                    <@m.mybatis_plus_maps_xml_simple name "select" "List" "p"/>
 
                 </#if>
             </#if>
