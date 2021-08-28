@@ -19,7 +19,7 @@
     </sql>
     <#--
     <#if (functions.properties('select_map')=='true')??>
-        <@m.mybatis_maps_xml '' "find" "Maps"/>
+        <@m.mybatis_maps_xml '' "find" "Maps" "p"/>
     </#if>
     -->
 
@@ -27,7 +27,7 @@
         <#list tplGroup.properties as p>
             <#if p.key?starts_with('findName')>
                 <#if p.value != "false">
-                    <@m.mybatis_maps_xml name "select" "List"/>
+                    <@m.mybatis_maps_xml name "select" "List" "p"/>
 
                 </#if>
             </#if>
