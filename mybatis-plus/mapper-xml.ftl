@@ -34,4 +34,8 @@
         </#list>
 
     </#if>
+
+    <select id="select${name}List" resultType="java.util.Map">
+
+    </select>
 </mapper>

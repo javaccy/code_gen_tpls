@@ -25,7 +25,8 @@ public class ${name}ServiceImpl extends ServiceImpl<${name}Mapper, ${name}DO> im
 
     @Override
     public List${r"<Map<String,Object>>"} select${name}List(Query${name} query, Page${r"<Map<String,Object>>"} page) {
-        return null;
+        Map${r"<String, Object>"} param = BeanUtils.beanToMap(query);
+        return baseMapper.select${name}List(page, param);
     }
 
 }
