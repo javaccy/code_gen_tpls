@@ -19,7 +19,7 @@
     </sql>
     <#--
     <#if (functions.properties('select_map')=='true')??>
-        <@m.mybatis_maps_xml ''/>
+        <@m.mybatis_maps_xml '' "find" "Maps"/>
     </#if>
     -->
 
@@ -27,7 +27,7 @@
         <#list tplGroup.properties as p>
             <#if p.key?starts_with('findName')>
                 <#if p.value != "false">
-                    <@m.mybatis_maps_xml p.value/>
+                    <@m.mybatis_maps_xml name "select" "List"/>
 
                 </#if>
             </#if>
@@ -35,7 +35,4 @@
 
     </#if>
 
-    <select id="select${name}List" resultType="java.util.Map">
-
-    </select>
 </mapper>

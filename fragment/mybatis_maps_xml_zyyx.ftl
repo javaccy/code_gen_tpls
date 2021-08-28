@@ -1,35 +1,37 @@
 <#assign xxxx=''/>
+<#assign mybatisSelectPrefix=''/>
+<#assign mybatisSelectSuffix=''/>
 <#if mybatisFindName??>
     <#assign xxxx=mybatisFindName/>
 <#else >
     <#assign xxxx=funs.prop('findName')/>
 </#if>
 <#if selectPrefix??>
-    <#assign mybatisSelectPrefix=selectPrefix/>
+<#assign mybatisSelectPrefix=selectPrefix/>
 </#if>
 <#if selectSuffix??>
     <#assign mybatisSelectSuffix=selectSuffix/>
 </#if>
 <#if (functions.prop('select_map')=='true')??>
-    <!-- todo ${author} ${selectPrefix}${xxxx}Maps 注释 -->
+    <!-- todo ${author} find${xxxx}${selectSuffix} 注释 -->
     <sql id="${tableName}${xxxx???string(''+xxxx,'')}_alias_columns">
         <#--<#list fields as f><#if f_index+1 ==fields?size>${tableAlias}.${f.columnName}${f.columnName?contains("_")?string(" AS "+f.name,"")}<#else>${tableAlias}.${f.columnName}${f.columnName?contains("_")?string(" AS "+f.name,"")}, </#if></#list>-->
         <#-- ${aliasColumns?join(",")} -->
         <#list aliasColumns as c>
         <#if c_index == 0>
-            ${c}
+            c
             <#else>
-            ,${c}
+            ,c
         </#if>
         </#list>
     </sql>
     <#-- 没用不要了
-    <select id="${selectPrefix}${xxxx}MapsCount" resultType="long">
+    <select id="find${xxxx}${selectSuffix}Count" resultType="long">
         select count(1) from ${tableName} ${tableAlias} where true
-        <include refid="find${xxxx}MapsCondition"/>
+        <include refid="find${xxxx}${selectSuffix}Condition"/>
     </select>
     -->
-    <select id="${selectPrefix}${xxxx}${selectSuffix}" resultType="java.util.Map">
+    <select id="find${xxxx}${selectSuffix}" resultType="java.util.Map">
         select
         *
         from (
@@ -62,7 +64,7 @@
             and ${tableAlias}.${idName} = ${r"#{params."}${idName}${r"}"}
         </if>
         </#if>
-        <include refid="${selectPrefix}${xxxx}${selectSuffix}Condition"/>
+        <include refid="find${xxxx}${selectSuffix}Condition"/>
         <choose>
             <when test="params.orderBy != null and params.orderBy != ''">
                 order by ${r"${params.orderBy}"}
@@ -88,7 +90,7 @@
             </otherwise>
         </choose>
     </select>
-    <sql id="${selectPrefix}${xxxx}${selectSuffix}Condition">
+    <sql id="find${xxxx}${selectSuffix}Condition">
         <#list fields as f>
             <#if f.type.name == 'java.lang.String'>
                 <#if ((f.jdbcType == 'VARCHAR' || f.jdbcType == 'varchar') && f.columnLength < 200) || f.jdbcType == 'CHAR' || f.jdbcType == 'char'>
