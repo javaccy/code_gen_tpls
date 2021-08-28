@@ -1,20 +1,12 @@
 <#import "../macro/macros.ftl" as m>
-package ${functions.packageName('entity')};
+${funs.prop("tabLine")?replace("|","")}package ${functions.packageName('list_vo')};
 
 <#if functions.properties('jsonField')=='true'>
 import com.alibaba.fastjson.annotation.JSONField;
 </#if>
-import com.baomidou.mybatisplus.annotation.TableId;
-<#if functions.properties('tableField')=='true'>
-import com.baomidou.mybatisplus.annotation.TableField;
-</#if>
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableName;
-import com.baomidou.mybatisplus.extension.activerecord.Model;
 <#if functions.properties('jsonFormat')=='true'>
 import com.fasterxml.jackson.annotation.JsonFormat;
 </#if>
-
 <#if funs.prop("lombok") == "true">
 import lombok.Data;
 import lombok.experimental.Accessors;
@@ -36,9 +28,10 @@ import ${t.name?replace("class","")};
         </#if>
     </#if>
 </#list>
+
 /**
  * <p>
- * ${tableComment!'实体类'}
+ * ${tableComment!'列表视图'}
  * </p>
  *
  * @author ${funs.prop('author')!default(author)}
@@ -49,24 +42,16 @@ import ${t.name?replace("class","")};
 @Accessors(chain = true)
 @EqualsAndHashCode(callSuper = false)
 </#if>
-<#if funs.prop("mybatisTableName") == "true">
-@TableName(value = "${tableName}")
-</#if>
 <#if funs.prop("swagger") == "true">
 @ApiModel(value = "${name}对象", description = "${tableComment}")
 </#if>
-public class ${tpl.filePrefix}${name}${tpl.fileSuffixPrefix} extends Model<${tpl.filePrefix}${name}${tpl.fileSuffixPrefix}> {
+public class ${tpl.filePrefix}${name}${tpl.fileSuffixPrefix} implements Serializable {
 
 ${funs.prop("tabLine")?replace("|","")}private static final long serialVersionUID = 1L;
 
 ${funs.prop("tabLine")?replace("|","")}/**
 ${funs.prop("tabLine")?replace("|","")} * ${idComment?default('主键id')}
 ${funs.prop("tabLine")?replace("|","")} */
-  <#if idType.name == 'java.lang.String'>
-${funs.prop("tabLine")?replace("|","")}@TableId(value = "${idColumnName}", type = ${isAuto?string("IdType.AUTO", "IdType.INPUT")})
-  <#else>
-${funs.prop("tabLine")?replace("|","")}@TableId(value = "${idColumnName}", type = IdType.AUTO)
-  </#if>
 ${funs.prop("tabLine")?replace("|","")}private ${idType.simpleName} ${idName};
 
 <@m.java_fields tpl.name/>
@@ -98,11 +83,6 @@ ${funs.prop("tabLine")?replace("|","")}}
   <#if funs.prop("getter") == 'true' || funs.prop("setter") == 'true'>
     <#include '../fragment/fields_getter_setter.ftl'/>
   </#if>
-
-${funs.prop("tabLine")?replace("|","")}@Override
-${funs.prop("tabLine")?replace("|","")}protected Serializable pkVal() {
-${funs.prop("tabLine")?replace("|","")}${funs.prop("tabLine")?replace("|","")}return this.${idName};
-${funs.prop("tabLine")?replace("|","")}}
 
   <#if funs.prop("toString") == 'true'>
 ${funs.prop("tabLine")?replace("|","")}@Override
