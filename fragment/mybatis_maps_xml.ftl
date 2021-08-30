@@ -55,8 +55,7 @@
                 <#if idType??>
                 ${idName}
                 </#if>
-                ,
-                <include refid="${tableName}${xxxx???string(''+xxxx,'')}_alias_columns"/>
+                ,<include refid="${tableName}${xxxx???string(''+xxxx,'')}_alias_columns"/>
             </otherwise>
         </choose>
         from ${tableName} ${tableAlias} where true

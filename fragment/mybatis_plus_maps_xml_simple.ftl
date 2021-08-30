@@ -40,8 +40,7 @@
             <#if idType??>
             ${tableAlias}.${idName}
             </#if>
-            ,
-            <include refid="${tableName}${xxxx???string(''+xxxx,'')}_alias_columns"/>
+            ,<include refid="${tableName}${xxxx???string(''+xxxx,'')}_alias_columns"/>
         from ${tableName} ${tableAlias} where true
         <#if idType.name == 'java.lang.String'>
         <if test="${mybatisParamsName}.${idName} != null and ${mybatisParamsName}.${idName} != ''">

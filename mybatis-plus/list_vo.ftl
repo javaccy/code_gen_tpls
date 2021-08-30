@@ -1,5 +1,5 @@
 <#import "../macro/macros.ftl" as m>
-${funs.prop("tabLine")?replace("|","")}package ${functions.packageName('list_vo')};
+package ${functions.packageName('list_vo')};
 
 <#if functions.properties('jsonField')=='true'>
 import com.alibaba.fastjson.annotation.JSONField;
@@ -39,7 +39,7 @@ import ${t.name?replace("class","")};
  */
 <#if funs.prop("lombok") == "true">
 @Data
-@Accessors(chain = true)
+@Accessors(chain = ${funs.prop("lombok.accessors.chain",'true')})
 @EqualsAndHashCode(callSuper = false)
 </#if>
 <#if funs.prop("swagger") == "true">
