@@ -3,6 +3,9 @@ package ${functions.packageName('query')};
 import io.swagger.annotations.ApiParam;
 import lombok.Data;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  *  @author ${funs.prop('author')!default(author)}
  *  @since ${tpl.date}

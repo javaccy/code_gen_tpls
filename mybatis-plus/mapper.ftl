@@ -16,6 +16,6 @@ import java.util.Map;
  */
 public interface ${name}Mapper extends BaseMapper<${name}${r"DO>"} {
 
- ${funs.prop("tabLine")?replace("|","")}List${r"<Map<String, Object>>"} selectCollectAppList(@Param("page") Page${r"<Map<String, Object>>"} page, @Param("p") Map${r"<String, Object>"} param);
+ ${funs.prop("tabLine")?replace("|","")}List${r"<Map<String, Object>>"} select${name}List(@Param("page") Page${r"<Map<String, Object>>"} page, @Param("p") Map${r"<String, Object>"} param);
 
 }
